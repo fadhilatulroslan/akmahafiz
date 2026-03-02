@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | System Core</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="aboutus.css">
+</head>
+<body class="fade-in">
+
+    <div class="bg-glow"></div>
+    <div class="grid-lines"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="back-btn"><i class="ri-arrow-left-up-line"></i> RETURN_HOME</a>
+        <div class="nav-title">MEET US</div>
+    </nav>
+
+    <div class="container">
+        <header class="about-header">
+            <span class="badge">ESTABLISHED 2026</span>
+            <h1 class="glitch" data-text="The Architects">The <span class="text-gradient">Architects</span></h1>
+            <div class="header-line"></div>
+        </header>
+
+        <div class="profile-grid">
+            <div class="bento-item profile-card float-anim">
+                <div class="profile-img-wrap pulse-glow">
+                    <img src="kema2.jpeg" alt="Akma" class="profile-img">
+                    <div class="scan-line-anim"></div>
+                </div>
+                <div class="profile-info">
+                    <div class="name-wrap">
+                        <h2>AKMA</h2>
+                        <span class="online-tag"></span>
+                    </div>
+                    <div class="status-bar"><div class="status-fill" style="width: 95%;"></div></div>
+                    <p>Optimizing user interaction and frontend architecture for the digital age.</p>
+                    <div class="socials">
+                        <a href="https://x.com/fadhilatulakma" class="mag-icon"><i class="ri-twitter-x-fill"></i></a> </div>
+                </div>
+            </div>
+
+            <div class="profile-img-wrap pulse-glow">
+    <div class="img-placeholder">
+        <span>H</span>
+    </div>
+    <div class="scan-line-anim"></div>
+</div>
+        </div>
+                <div class="profile-info">
+                    <div class="name-wrap">
+                        <h2>HAFIZ</h2>
+                        <span class="online-tag"></span>
+                    </div>
+                    <div class="status-bar"><div class="status-fill" style="width: 90%;"></div></div>
+                    <p>Architecting robust backend structures and seamless data integration.</p>
+                    <div class="socials">
+                        <a href="#" class="mag-icon"><i class="ri-instagram-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mouse Tracking Glow
+        document.querySelectorAll('.bento-item').forEach(card => {
+            card.onmousemove = e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            };
+        });
+
+        // Simple Magnetic Icon Effect
+        document.querySelectorAll('.mag-icon').forEach(icon => {
+            icon.onmousemove = e => {
+                const rect = icon.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                icon.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            };
+            icon.onmouseleave = () => {
+                icon.style.transform = `translate(0px, 0px)`;
+            };
+        });
+    </script>
+</body>
+</html>

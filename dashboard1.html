@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Akma's Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="akmastyle.css">
+</head>
+
+<body class="page-transition">
+
+    <div class="mouse-glow" id="mouseGlow"></div>
+    <div class="glow-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AkmaSpace <span class="dot">.</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="mag-link">Home</a>
+                <a href="dashboardoption.html" class="mag-link">Switch Terminal</a>
+                <a href="#" class="active mag-link">Akma's Space</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <div class="reveal-text">
+            <span class="user-badge terminal-flicker">Jobsheet Terminal</span>
+            <h1>Welcome to <span class="text-neon">Akma's Workspace</span></h1>
+            
+            <div class="terminal-info">
+                <span id="liveDate"></span> | <span id="liveClock"></span>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box aura-border">
+                <h3 id="jobsheetCount">0</h3>
+                <p>Total Jobsheets</p>
+            </div>
+            <div class="stat-box aura-border">
+                <h3 id="completedCount">0</h3>
+                <p>Completed</p>
+            </div>
+        </div>
+        
+        <div class="progress-wrapper">
+            <div class="progress-info">
+                <span>Jobsheet progress</span>
+                <span id="progressText">0%</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="cardGrid">
+        <a href="JS1.html" class="jobsheet-card tilt-card" style="--delay: 0.1s;">
+            <div class="card-icon"><i class="ri-code-s-slash-line"></i></div>
+            <div class="card-info">
+                <h3 class="scramble-target">Jobsheet 1</h3>
+                <p>Travel experience page with headings, images and navigation.</p>
+            </div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+        </a>
+
+        <a href="JS2.html" class="jobsheet-card tilt-card" style="--delay: 0.2s;">
+            <div class="card-icon"><i class="ri-layout-4-line"></i></div>
+            <div class="card-info">
+                <h3 class="scramble-target">Jobsheet 2</h3>
+                <p>Gadgets comparison table with videos and specifications.</p>
+            </div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+        </a>
+
+        <a href="JS3.html" class="jobsheet-card tilt-card" style="--delay: 0.3s;">
+            <div class="card-icon"><i class="ri-database-2-line"></i></div>
+            <div class="card-info">
+                <h3 class="scramble-target">Jobsheet 3</h3>
+                <p>Information page with header, navigation and overview.</p>
+            </div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+        </a>
+
+        <a href="JS4.html" class="jobsheet-card tilt-card" style="--delay: 0.4s;">
+            <div class="card-icon"><i class="ri-shield-user-line"></i></div>
+            <div class="card-info">
+                <h3 class="scramble-target">Jobsheet 4</h3>
+                <p>Online store interface with products layout.</p>
+            </div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+        </a>
+
+        <a href="JS5.html" class="jobsheet-card tilt-card" style="--delay: 0.5s;">
+            <div class="card-icon"><i class="ri-notification-3-line"></i></div>
+            <div class="card-info">
+                <h3 class="scramble-target">Jobsheet 5</h3>
+                <p>Art store registration form with structured inputs.</p>
+            </div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+        </a>
+
+        <a href="JS6.html" class="jobsheet-card tilt-card" style="--delay: 0.6s;">
+            <div class="card-icon"><i class="ri-rocket-line"></i></div>
+            <div class="card-info">
+                <h3 class="scramble-target">Jobsheet 6</h3>
+                <p>Artist profile page with biography and image section.</p>
+            </div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+        </a>
+    </div>
+
+    <footer class="futuristic-footer">
+        © 2026 IKML | Mobile Application Development
+    </footer>
+
+    <script>
+        // 1. Terminal Clock & Date (Style Hafiz)
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('liveDate').innerText = now.toLocaleDateString('en-MY', dateOptions).toUpperCase();
+            document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-MY', { hour12: false });
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // 2. Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 25; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'p-circle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.animationDuration = (Math.random() * 12 + 6) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // 3. Progress Animation
+        const totalNum = 15;
+        const currentNum = document.querySelectorAll(".jobsheet-card").length;
+        const resultPercent = Math.round((currentNum / totalNum) * 100);
+        
+        setTimeout(() => {
+            document.getElementById("progressBar").style.width = resultPercent + "%";
+            document.getElementById("progressText").innerText = resultPercent + "%";
+        }, 600);
+
+        function animateValue(id, end) {
+            let obj = document.getElementById(id);
+            let start = 0; let duration = 1500;
+            let increment = end / (duration / 16);
+            let current = start;
+            let timer = setInterval(() => {
+                current += increment;
+                if (current >= end) { current = end; clearInterval(timer); }
+                obj.innerText = Math.floor(current);
+            }, 16);
+        }
+        animateValue("jobsheetCount", 15);
+        animateValue("completedCount", currentNum);
+
+        // 4. Mouse Glow
+        const mouseGlow = document.getElementById('mouseGlow');
+        document.addEventListener('mousemove', (e) => {
+            mouseGlow.style.left = e.clientX + 'px';
+            mouseGlow.style.top = e.clientY + 'px';
+        });
+
+        // 5. Text Scramble Effect
+        class TextScramble {
+            constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#________'; this.update = this.update.bind(this); }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || ''; const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40); const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end, char: '' });
+                }
+                cancelAnimationFrame(this.frameRequest); this.frame = 0; this.update(); return promise;
+            }
+            update() {
+                let output = ''; let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) { complete++; output += to; }
+                    else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+                        output += `<span class="dud">${char}</span>`;
+                    } else { output += from; }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) { this.resolve(); } else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+            }
+        }
+        document.querySelectorAll('.jobsheet-card').forEach(card => {
+            const target = card.querySelector('.scramble-target');
+            const fx = new TextScramble(target);
+            card.addEventListener('mouseenter', () => fx.setText(target.innerText));
+        });
+
+        // 6. Tilt & Magnetic
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                card.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${y * -12}deg) translateY(-12px)`;
+            });
+            card.addEventListener('mouseleave', () => card.style.transform = `translateY(0px) rotateX(0deg) rotateY(0deg)`);
+        });
+
+        document.querySelectorAll('.mag-link').forEach(link => {
+            link.addEventListener('mousemove', (e) => {
+                const rect = link.getBoundingClientRect();
+                link.style.transform = `translate(${(e.clientX - rect.left - rect.width/2)*0.3}px, ${(e.clientY - rect.top - rect.height/2)*0.3}px)`;
+            });
+            link.addEventListener('mouseleave', () => link.style.transform = ``);
+        });
+    </script>
+</body>
+</html>

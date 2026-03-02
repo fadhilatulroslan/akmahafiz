@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace Option</title>
+    <link rel="stylesheet" href="optionstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+
+    <div class="bg-glow"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <header class="header-section">
+            <span class="badge">Workspace Selector</span>
+            <h1>Choose Your <span class="text-gradient">Terminal</span></h1>
+            <p class="subtitle">Select your dedicated dashboard to continue managing jobsheets.</p>
+        </header>
+
+        <div class="option-container">
+            <a href="dashboard1.html" class="option-card akma-card">
+                <div class="card-content">
+                    <div class="avatar">
+                        <img src="kema6.jpeg" alt="Akma" class="avatar-img">
+                    </div>
+                    <h2>Akma's Dashboard</h2>
+                    <p>Visit Akma's Space</p>
+                    <span class="enter-link">Access Terminal →</span>
+                </div>
+                <div class="card-glow pink-glow"></div>
+            </a>
+
+            <a href="dashboard2.html" class="option-card hafiz-card">
+                <div class="card-content">
+                    <div class="avatar">
+                        <img src="Hafiz.jpg" alt="Hafiz" class="avatar-img">
+                    </div>
+                    <h2>Hafiz's Dashboard</h2>
+                    <p>Visit Hafiz's Space</p>
+                    <span class="enter-link">Access Terminal →</span>
+                </div>
+                <div class="card-glow blue-glow"></div>
+            </a>
+        </div>
+
+        <a href="index.html" class="back-link">
+            <span class="arrow">←</span> Return to Main Terminal
+        </a>
+    </div>
+
+    <script>
+        // Smooth page transition logic
+        document.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", function(e) {
+                const target = this.getAttribute("href");
+                if (target && !target.startsWith("#")) {
+                    e.preventDefault();
+                    document.body.classList.add("fade-out");
+                    setTimeout(() => {
+                        window.location.href = target;
+                    }, 500);
+                }
+            });
+        });
+
+        // 3D Tilt Effect for Cards
+        const cards = document.querySelectorAll('.option-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+            });
+        });
+    </script>
+</body>
+</html>

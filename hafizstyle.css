@@ -1,0 +1,137 @@
+:root {
+    --bg: #02060a;
+    --card-bg: rgba(0, 242, 255, 0.03);
+    --neon: #00f2ff;
+    --neon-alt: #0066ff;
+    --border: rgba(255, 255, 255, 0.05);
+    --text-sec: rgba(255, 255, 255, 0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; }
+
+body { 
+    font-family: 'Poppins', sans-serif; 
+    background: var(--bg); 
+    color: white; 
+    overflow-x: hidden;
+}
+
+/* Scanline Overlay (The WOW factor) */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    z-index: 999;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+}
+
+/* Backgrounds */
+.neon-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 10% 10%, rgba(0, 242, 255, 0.1), transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(0, 102, 255, 0.1), transparent 40%);
+    z-index: -2;
+}
+
+.grid-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px; z-index: -3; opacity: 0.2;
+}
+
+.mouse-glow {
+    position: fixed; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0, 242, 255, 0.07) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky; top: 0; background: rgba(2, 6, 10, 0.85);
+    backdrop-filter: blur(15px); border-bottom: 1px solid var(--border);
+    padding: 1.2rem 0; z-index: 100;
+}
+.nav-container { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-weight: 700; font-size: 1.5rem; letter-spacing: 1px; }
+.dot { color: var(--neon); }
+.nav-links a { margin-left: 25px; color: var(--text-sec); font-size: 0.85rem; transition: color 0.3s; }
+.nav-links a.active, .nav-links a:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+
+/* Header & Terminal Info */
+.header-section { text-align: center; padding: 70px 20px 30px; }
+.terminal-badge {
+    font-size: 0.6rem; background: rgba(0, 242, 255, 0.1); color: var(--neon);
+    padding: 6px 16px; border-radius: 100px; border: 1px solid var(--neon);
+    text-transform: uppercase; letter-spacing: 2px;
+}
+.shimmer { animation: shimmer 2s infinite linear; background-size: 200% 100%; }
+@keyframes shimmer { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+
+.header-content h1 { font-size: 3.2rem; font-weight: 700; margin-top: 15px; }
+.text-neon { background: linear-gradient(to right, #fff, var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.terminal-info {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem; color: var(--neon); margin-top: 10px; opacity: 0.8; letter-spacing: 1px;
+}
+.header-desc { color: var(--text-sec); font-size: 0.9rem; max-width: 600px; margin: 15px auto; line-height: 1.6; min-height: 3em; }
+.header-desc::after { content: "_"; animation: blink 0.8s infinite; color: var(--neon); }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Stats Card with Aura */
+.stats-row { display: flex; justify-content: center; gap: 25px; margin-top: 30px; }
+.stat-card {
+    position: relative; background: #050a10; padding: 2px; border-radius: 20px;
+    overflow: hidden; min-width: 180px;
+}
+.aura-border::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: conic-gradient(transparent, transparent, var(--neon), transparent);
+    animation: rotate 4s linear infinite;
+}
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.stat-content {
+    background: #050a10; padding: 25px; border-radius: 18px; position: relative; z-index: 1;
+}
+.stat-card h3 { color: var(--neon); font-size: 2.2rem; }
+.stat-card p { color: var(--text-sec); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Progress Bar */
+.progress-wrapper { max-width: 500px; margin: 40px auto; padding: 0 20px; }
+.progress-info { display: flex; justify-content: space-between; color: var(--text-sec); font-size: 0.75rem; margin-bottom: 8px; }
+.progress-container { background: rgba(255, 255, 255, 0.03); height: 6px; border-radius: 50px; border: 1px solid var(--border); overflow: hidden; }
+.progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon), var(--neon-alt)); box-shadow: 0 0 15px var(--neon); transition: width 2s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Main Cards */
+.card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; max-width: 1200px; margin: 30px auto; padding: 20px; }
+.jobsheet-card {
+    display: flex; align-items: center; gap: 20px; padding: 25px;
+    background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border);
+    transition: 0.4s; backdrop-filter: blur(10px);
+}
+.card-icon {
+    width: 50px; height: 50px; border-radius: 15px; background: rgba(0, 242, 255, 0.1);
+    display: flex; justify-content: center; align-items: center; font-size: 1.4rem; color: var(--neon);
+}
+.card-info h3 { font-size: 1.1rem; color: #fff; }
+.card-info p { font-size: 0.8rem; color: var(--text-sec); margin-top: 4px; }
+.card-arrow { margin-left: auto; color: var(--neon); opacity: 0.3; transition: 0.3s; }
+
+.jobsheet-card:hover { 
+    transform: translateY(-8px); border-color: var(--neon); 
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.15), inset 0 0 10px rgba(0, 242, 255, 0.05); 
+}
+.jobsheet-card:hover .card-icon { background: var(--neon); color: #000; transform: rotate(-8deg); }
+.jobsheet-card:hover .card-arrow { opacity: 1; transform: translate(5px, -5px); }
+
+/* Particles */
+.particle { position: absolute; width: 2px; height: 2px; background: var(--neon); border-radius: 50%; opacity: 0.3; animation: float 10s infinite linear; }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(-100vh); } }
+
+.footer { text-align: center; padding: 40px; color: var(--text-sec); font-size: 0.75rem; border-top: 1px solid var(--border); }

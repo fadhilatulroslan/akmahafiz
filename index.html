@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="indexstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">LOADING</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar" id="loadBar"></div>
+            </div>
+            <div class="loader-text">INITIALIZING SYSTEM... <span id="loadText">0%</span></div>
+        </div>
+    </div>
+
+    <div class="cursor-aura" id="aura"></div>
+    <div class="particles-container" id="particles"></div>
+    <div class="abstract-shape shape-1"></div>
+    <div class="abstract-shape shape-2"></div>
+
+    <div class="top-bar">
+        <div class="system-time" id="clock">00:00:00</div>
+        <div class="system-status">● SYSTEM ONLINE</div>
+    </div>
+
+    <div class="main-container">
+        <div class="portal-card" id="mainCard">
+            <div class="scanline"></div>
+            <div class="card-shine"></div>
+
+            <span class="system-label">Mobile Application Development</span>
+            <h1>Welcome to Our <br> <span class="text-gradient pulse-animation glitch-hover">Workspace</span></h1>
+            <p class="description">
+                Explore the digital workspace of <strong>Akma & Hafiz</strong>. 
+                A curated hub showcasing our journey, creative projects, and technical jobsheets 
+                developed throughout our Mobile Application Development course.
+            </p>
+            <div class="btn-group">
+                <div class="magnetic-area">
+                    <div class="magnetic-wrap">
+                        <a href="#" class="nav-btn btn-primary" id="launchBtn">
+                            <span>Launch Workspace</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="magnetic-area">
+                    <div class="magnetic-wrap">
+                        <a href="aboutus.html" class="nav-btn btn-outline">
+                            <span>Explore About Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-container">
+        <div class="music-ctrl" id="musicBtn">
+            <div class="equalizer">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <span class="music-text">SOUND OFF</span>
+        </div>
+        
+        <div class="volume-panel">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="folded.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeBtn">&times;</button>
+            <div class="modal-header">
+                <span class="badge-mini">Workspace Selector</span>
+                <h2 class="modal-title">Choose Your <span class="text-gradient">Terminal</span></h2>
+            </div>
+            <div class="option-container">
+                <a href="dashboard1.html" class="option-card">
+                    <div class="card-inner">
+                        <div class="avatar">
+                            <img src="kema6.jpeg" alt="Akma" class="avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder" style="display:none">A</div>
+                        </div>
+                        <h3>Akma's Space</h3>
+                        <span class="enter-btn">Access →</span>
+                    </div>
+                    <div class="card-glow pink-glow"></div>
+                </a>
+
+                <a href="dashboard2.html" class="option-card">
+                    <div class="card-inner">
+                        <div class="avatar">
+                            <img src="Hafiz.jpg" alt="Hafiz" class="avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder" style="display:none">H</div>
+                        </div>
+                        <h3>Hafiz's Space</h3>
+                        <span class="enter-btn">Access →</span>
+                    </div>
+                    <div class="card-glow blue-glow"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-line"></div>
+        <span>© 2026 IKML • AKMA & HAFIZ</span>
+    </div>
+
+    <script>
+        // 1. Loading 
+        window.addEventListener('load', () => {
+            let loadBar = document.getElementById('loadBar');
+            let loadText = document.getElementById('loadText');
+            let progress = 0;
+            let interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 10) + 1;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('loader').classList.add('hide');
+                    }, 500);
+                }
+                loadBar.style.width = progress + '%';
+                loadText.innerText = progress + '%';
+            }, 100);
+        });
+
+        // 2. Clock 
+        function updateClock() {
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2, '0') + ":" + 
+                         now.getMinutes().toString().padStart(2, '0') + ":" + 
+                         now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').innerText = time;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 3. Music & Volume 
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const musicText = document.querySelector('.music-text');
+
+        bgMusic.volume = 0.5;
+
+        musicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicBtn.classList.add('playing');
+                musicText.innerText = "FOLDED - ON";
+            } else {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                musicText.innerText = "SOUND OFF";
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            bgMusic.volume = e.target.value;
+            if(e.target.value == 0) {
+                musicText.innerText = "MUTED";
+            } else if (!bgMusic.paused) {
+                musicText.innerText = "FOLDED - ON";
+            }
+        });
+
+        // 4. Particles 
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 35; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.style.width = particle.style.height = Math.random() * 3 + 2 + 'px';
+            container.appendChild(particle);
+        }
+
+        const aura = document.getElementById('aura');
+        const card = document.getElementById('mainCard');
+        const modal = document.getElementById('dashboardModal');
+
+        document.addEventListener('mousemove', (e) => {
+            aura.style.left = e.clientX + 'px';
+            aura.style.top = e.clientY + 'px';
+            if (!modal.classList.contains('show')) {
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // Modal Logic
+        const launchBtn = document.getElementById('launchBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        launchBtn.addEventListener('click', (e) => { e.preventDefault(); modal.classList.add('show'); });
+        closeBtn.addEventListener('click', () => { modal.classList.remove('show'); });
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+
+        // Magnetic Effect
+        const areas = document.querySelectorAll('.magnetic-area');
+        areas.forEach(area => {
+            area.addEventListener('mousemove', (e) => {
+                const btn = area.querySelector('.nav-btn');
+                const rect = area.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.4}px) scale(1.03)`;
+            });
+            area.addEventListener('mouseleave', () => {
+                area.querySelector('.nav-btn').style.transform = `translate(0, 0) scale(1)`;
+            });
+        });
+    </script>
+</body>
+</html>

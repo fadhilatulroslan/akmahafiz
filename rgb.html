@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+/* Kotak kecil */
+.box {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* RGB Colors */
+.rgb-red { background-color: rgb(255,0,0); }
+.rgb-green { background-color: rgb(0,255,0); color: black; }
+.rgb-blue { background-color: rgb(0,0,255); }
+.rgb-yellow { background-color: rgb(255,255,0); color: black; }
+
+/* HSL Colors */
+.hsl-red { background-color: hsl(0,100%,50%); }
+.hsl-green { background-color: hsl(120,100%,50%); }
+.hsl-blue { background-color: hsl(240,100%,50%); }
+.hsl-yellow { background-color: hsl(60,100%,50%); color: black; }
+
+/* RGBA Colors */
+.rgba-red { background-color: rgba(255,0,0,0.5); }
+.rgba-green { background-color: rgba(0,255,0,0.5); color: black; }
+.rgba-blue { background-color: rgba(0,0,255,0.5); }
+.rgba-yellow { background-color: rgba(255,255,0,0.5); color: black; }
+</style>
+</head>
+<body>
+
+<h2>Contoh Kotak Kecil: RGB, HSL & RGBA</h2>
+
+<h3>RGB</h3>
+<div class="container">
+  <div class="box rgb-red">Red</div>
+  <div class="box rgb-green">Green</div>
+  <div class="box rgb-blue">Blue</div>
+  <div class="box rgb-yellow">Yellow</div>
+</div>
+
+<h3>HSL</h3>
+<div class="container">
+  <div class="box hsl-red">Red</div>
+  <div class="box hsl-green">Green</div>
+  <div class="box hsl-blue">Blue</div>
+  <div class="box hsl-yellow">Yellow</div>
+</div>
+
+<h3>RGBA</h3>
+<div class="container">
+  <div class="box rgba-red">Red</div>
+  <div class="box rgba-green">Green</div>
+  <div class="box rgba-blue">Blue</div>
+  <div class="box rgba-yellow">Yellow</div>
+</div>
+
+</body>
+</html>
