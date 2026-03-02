@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Store</title>
+        <style>
+
+/* Reset */
+html, body, header, footer, hgroup, nav, article, section, figure, figcaption,
+h1, h2, h3, ul, li, div, p, img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+/* Body */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    background-image: url("stucco.png");
+    line-height: 1.428571429;
+}
+
+/* Header */
+header {
+    width: 900px;
+    margin: 0 auto;
+}
+
+/* Top Header Row */
+#topHeaderRow {
+    background-color: #222222;
+    font-size: 0.9em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    padding-right: 1em;
+}
+
+#topHeaderRow a {
+    color: #999999;
+    margin-right: 2em;
+    text-decoration: none;
+}
+
+/* List */
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    text-decoration: none;
+}
+
+/* Heading 1 */
+h1 {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+/* Main Navigation Row */
+#mainNavigationRow {
+    background-color: #f8f8f8;
+    height: 3em;
+    border: 1pt solid #e7e7e7;
+    line-height: 3em;
+}
+
+#mainNavigationRow a {
+    color: #777777;
+    font-weight: bold;
+    margin-left: 1em;
+    margin-right: 2em;
+    text-decoration: none;
+}
+
+/* Main */
+main {
+    width: 880px;
+    margin: 1em auto;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1pt solid #e7e7e7;
+}
+
+/* Heading 2 */
+h2 {
+    font-size: 1.75em;
+}
+
+/* Heading 3 */
+h3 {
+    font-size: 1.25em;
+    border-bottom: 1pt solid #e7e7e7;
+    margin-top: 1em;
+    margin-bottom: 0.75em;
+}
+
+/* Figure inside main */
+main figure {
+    width: 300px;
+    display: inline-block;
+    margin-top: 1em;
+}
+
+/* Info Div */
+#info {
+    /* margin-left: 310px; */
+    margin-top: 1em;
+}
+
+/* Price Paragraph */
+.price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: red;
+    margin-top: 1em;
+}
+
+/* Buttons Div */
+#buttons {
+    border: 1pt solid #e7e7e7;
+    margin-top: 1em;
+    padding: 10px;
+}
+
+#buttons button {
+    width: 250px;
+    height: 3em;
+    margin-left: 1em;
+    line-height: 3em;
+}
+
+#buttons button a {
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Table Header */
+th {
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+}
+
+/* Similar Div */
+#similar {
+    clear: left;
+    margin-top: 2em;
+    height: 250px;
+}
+
+/* Box Div */
+.box {
+    width: 180px;
+    padding: 0.5em;
+    border: 1pt solid #e7e7e7;
+    margin-right: 1em;
+    display: inline-block;
+    text-align: center;
+}
+
+.box img {
+   size: 30px;
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Footer */
+footer {
+    clear: left;
+    width: 900px;
+    height: 3em;
+    margin: 1em auto 0 auto;
+    border: 1pt solid #e7e7e7;
+    background-color: #222222;
+    color: #999999;
+    font-size: 0.9em;
+    text-align: center;
+    line-height: 3em;
+}
+#Details {
+    display: flex;
+    flex-direction: row;
+}
+
+</style>
+
+    </head>
+
+    <body>
+
+    <header>
+
+    <div id="topHeaderRow">
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <h1>My Product Store</h1>
+
+    <div id="mainNavigationRow">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
+
+</header>
+
+<main>
+    <h2>Featured Product</h2>
+<div id="Details">
+    <figure>
+        <img src="Speaker.jpg" width="300px" alt="Speaker">
+        <figcaption>Z313 Speaker with Subwoofer</figcaption>
+    </figure>
+
+    <div id="info">
+        <h3>Product Details</h3>
+        <p>High-performing and easy to use, the Z313 Speaker System with Subwoofer provides balanced and rich sound.
+             Works with any device with a headphone jack 3.5 mm input.</p>
+             <br>
+        <p>&bull; Total Watt (RMS): 25 W</p>
+        <p>&bull; Subwoofer: 15 W</p>
+        <p>&bull; Satellites: 2 x 5 W</p>
+        <p>&bull; Height: 228.4 mm</p>
+        <p>&bull; Width: 150 mm</p>
+        <p>&bull; Depth: 220 mm</p>
+        <p class="price">RM189.00</p>
+
+        <div id="buttons">
+            <button><a href="#">Add to Cart</a></button>
+            <button><a href="#">Buy Now</a></button>
+        </div>
+    </div>
+</div>
+    <div id="similar">
+        <h3>Similar Products</h3>
+
+        <div class="box">
+            <img src="Razer.jpg" width="90px" alt="Razer">
+            <p>Razer Nommo V2</p>
+            <button>Buy</button>
+            <button>View</button>
+        </div>
+
+        <div class="box">
+            <img src="S-Series.jpg" width="90px" alt="Samsung">
+            <p>S-Series</p>
+            <button>Buy</button>
+            <button>View</button>
+        </div>
+
+        <div class="box">
+            <img src="ULT FIELD 5.jpg" width="90px" alt="Sony">
+            <p> Sony ULT FIELD 5</p>
+             <button>Buy</button>
+             <button>View</button>
+        </div>
+
+        <div class="box">
+            <img src="Panasonic speaker.jpg" width="90px" alt="Panasonic">
+            <p>Panasonic SC-TMAX45GSK</p>
+             <button>Buy</button>
+             <button>View</button>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 My Product Store
+</footer>
+
+</body>
+</html>
