@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hafiz's Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Fira+Code:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="hafizstyle.css">
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="ripple-container" id="rippleContainer"></div>
+
+    <!-- Terminal Boot Sequence -->
+    <div class="boot-overlay" id="bootOverlay">
+        <div class="boot-line" id="bl0"><span class="prefix">[SYS]</span> Initializing HafizSpace terminal...<span class="boot-cursor"></span></div>
+        <div class="boot-line" id="bl1"><span class="prefix">[OK ]</span> Kernel modules loaded</div>
+        <div class="boot-line success" id="bl2"><span class="prefix">[OK ]</span> Authentication verified — Welcome, Hafiz ✓</div>
+        <div class="boot-line" id="bl3"><span class="prefix">[SYS]</span> Loading jobsheet database...</div>
+        <div class="boot-line success" id="bl4"><span class="prefix">[OK ]</span> 6 modules found and indexed</div>
+        <div class="boot-line warning" id="bl5"><span class="prefix">[INF]</span> Dashboard ready. Launching workspace...</div>
+    </div>
+
+    <div class="card-tooltip" id="cardTooltip">Open Module</div>
+    <div class="cursor-crosshair" id="cursorCross"></div>
+
+    <!-- Iris Wipe Exit -->
+    <svg class="iris-svg" id="irisSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle id="irisCircle" cx="50" cy="50" r="0" fill="#070d0b"/>
+    </svg>
+
+    <!-- Venetian Blinds Enter -->
+    <div class="venetian-wrap" id="venetianWrap"></div>
+
+    <canvas class="aurora-canvas" id="auroraCanvas"></canvas>
+    <canvas class="hex-canvas"    id="hexCanvas"></canvas>
+
+    <div class="glow-particles" id="glowParticles"></div>
+    <div class="data-rain"      id="dataRain"></div>
+
+    <div class="floating-shapes">
+        <div class="shape3d shape-cube"></div>
+        <div class="shape3d shape-pyramid"></div>
+        <div class="shape3d shape-sphere"></div>
+        <div class="shape3d shape-torus"></div>
+    </div>
+
+    <div class="spotlight"  id="spotlight"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+    <div class="glow-bg"></div>
+    <div class="particles"  id="particles"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">HafizSpace <span class="dot">.</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dashboardoption.html">Switch Terminal</a>
+                <a href="#" class="active">Hafiz's Space</a>
+            </div>
+            <div class="nav-stats">
+                <span class="nav-stat-item" id="navPercent">43%</span>
+                <span class="nav-stat-divider">|</span>
+                <span class="nav-stat-item nav-timer" id="sessionTimer">00:00:00</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <div class="header-content-left">
+            <div class="reveal-text">
+                <span class="user-badge terminal-flicker">Jobsheet Terminal</span>
+                <div class="time-greeting" id="timeGreeting"></div>
+                <h1>Welcome to <br><span class="text-neon" id="neonText"></span></h1>
+                <div class="terminal-info">
+                    <span id="liveDate"></span> | <span id="liveClock"></span>
+                </div>
+            </div>
+
+            <div class="progress-wrapper">
+                <div class="progress-info">
+                    <span>Jobsheet progress</span>
+                    <span id="progressText">0%</span>
+                </div>
+                <div class="progress-container pulse-border">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-stats">
+                    <span><span id="completedCount" class="stat-num">0</span> completed</span>
+                    <span><span id="totalCount"     class="stat-num">14</span> total</span>
+                </div>
+            </div>
+
+            <div class="module-counter">
+                <div class="counter-dot"></div>
+                <span class="counter-value" id="counterVal">0</span>
+                <span class="counter-label">Modules Loaded</span>
+            </div>
+        </div>
+
+        <div class="header-image-right">
+            <div class="radar-wrap">
+                <div class="radar-ring ring-1"></div>
+                <div class="radar-ring ring-2"></div>
+                <div class="radar-ring ring-3"></div>
+                <div class="image-portal" id="imagePortal">
+                    <img src="Hafiz.jpg" alt="Hafiz Profile">
+                    <div class="img-glitch-layer glitch-r" id="glitchLayerR"></div>
+                    <div class="img-glitch-layer glitch-g" id="glitchLayerG"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider">
+        <div class="divider-line"></div>
+        <div class="divider-scan"></div>
+        <div class="divider-label">// JOBSHEET MODULES</div>
+    </div>
+
+    <div class="container" id="cardGrid">
+        <a href="HJS1.html" class="jobsheet-card tilt-card card-hidden" style="--delay:0.05s;">
+            <span class="card-number">01</span><span class="status-badge badge-done">COMPLETE</span>
+            <div class="card-icon"><i class="ri-code-s-slash-line"></i></div>
+            <div class="card-info"><h3 class="scramble-target">Jobsheet 1</h3><p>Travel experience page with headings, images and navigation.</p></div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+            <div class="card-shine"></div><div class="card-holo"></div><div class="card-stack-shadow"></div><div class="spark-container"></div>
+        </a>
+        <a href="HJS2.html" class="jobsheet-card tilt-card card-hidden" style="--delay:0.15s;">
+            <span class="card-number">02</span><span class="status-badge badge-done">COMPLETE</span>
+            <div class="card-icon"><i class="ri-layout-4-line"></i></div>
+            <div class="card-info"><h3 class="scramble-target">Jobsheet 2</h3><p>Gadgets comparison table with videos and specifications.</p></div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+            <div class="card-shine"></div><div class="card-holo"></div><div class="card-stack-shadow"></div><div class="spark-container"></div>
+        </a>
+        <a href="HJS3.html" class="jobsheet-card tilt-card card-hidden" style="--delay:0.25s;">
+            <span class="card-number">03</span><span class="status-badge badge-done">COMPLETE</span>
+            <div class="card-icon"><i class="ri-database-2-line"></i></div>
+            <div class="card-info"><h3 class="scramble-target">Jobsheet 3</h3><p>Information page with header, navigation and overview.</p></div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+            <div class="card-shine"></div><div class="card-holo"></div><div class="card-stack-shadow"></div><div class="spark-container"></div>
+        </a>
+        <a href="HJS4.html" class="jobsheet-card tilt-card card-hidden" style="--delay:0.35s;">
+            <span class="card-number">04</span><span class="status-badge badge-done">COMPLETE</span>
+            <div class="card-icon"><i class="ri-shield-user-line"></i></div>
+            <div class="card-info"><h3 class="scramble-target">Jobsheet 4</h3><p>Online store interface with products layout.</p></div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+            <div class="card-shine"></div><div class="card-holo"></div><div class="card-stack-shadow"></div><div class="spark-container"></div>
+        </a>
+        <a href="HJS5.html" class="jobsheet-card tilt-card card-hidden" style="--delay:0.45s;">
+            <span class="card-number">05</span><span class="status-badge badge-done">COMPLETE</span>
+            <div class="card-icon"><i class="ri-notification-3-line"></i></div>
+            <div class="card-info"><h3 class="scramble-target">Jobsheet 5</h3><p>Art store registration form with structured inputs.</p></div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+            <div class="card-shine"></div><div class="card-holo"></div><div class="card-stack-shadow"></div><div class="spark-container"></div>
+        </a>
+        <a href="HJS6.html" class="jobsheet-card tilt-card card-hidden" style="--delay:0.55s;">
+            <span class="card-number">06</span><span class="status-badge badge-done">COMPLETE</span>
+            <div class="card-icon"><i class="ri-rocket-line"></i></div>
+            <div class="card-info"><h3 class="scramble-target">Jobsheet 6</h3><p>Artist profile page with biography and image section.</p></div>
+            <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+            <div class="card-shine"></div><div class="card-holo"></div><div class="card-stack-shadow"></div><div class="spark-container"></div>
+        </a>
+    </div>
+
+    <button class="back-to-top" id="backToTop"><i class="ri-arrow-up-line"></i></button>
+
+    <footer class="futuristic-footer">
+        <div class="glitch-text" id="glitchFooter">© 2026 IKML | Mobile Application Development</div>
+    </footer>
+
+<script>
+    // Boot sequence
+    [100,600,1000,1500,1900,2300].forEach((delay, i) => {
+        setTimeout(() => document.getElementById('bl'+i)?.classList.add('show'), delay);
+    });
+    setTimeout(() => {
+        const o = document.getElementById('bootOverlay');
+        o.classList.add('boot-done');
+        setTimeout(() => o.remove(), 700);
+    }, 3000);
+
+    // Cursor
+    const cross = document.getElementById('cursorCross');
+    document.addEventListener('mousemove', e => { cross.style.left = e.clientX+'px'; cross.style.top = e.clientY+'px'; });
+    document.querySelectorAll('a, button, .jobsheet-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cross.classList.add('cursor-active'));
+        el.addEventListener('mouseleave', () => cross.classList.remove('cursor-active'));
+    });
+
+    // Date & time
+    function updateDateTime() {
+        const now = new Date();
+        document.getElementById('liveDate').innerText = now.toLocaleDateString('en-MY',{weekday:'long',year:'numeric',month:'short',day:'numeric'}).toUpperCase();
+        document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-MY',{hour12:false});
+    }
+    setInterval(updateDateTime, 1000); updateDateTime();
+
+    // Time greeting
+    function updateGreeting() {
+        const h = new Date().getHours();
+        const greet = h<5?'🌙 Good Night,':h<12?'🌅 Good Morning,':h<17?'☀️ Good Afternoon,':h<20?'🌆 Good Evening,':'🌙 Good Night,';
+        document.getElementById('timeGreeting').innerHTML = greet;
+    }
+    updateGreeting();
+
+    // Progress bar
+    const totalNum     = 14;
+    const completedNum = document.querySelectorAll('.badge-done').length;
+    const cardCount    = document.querySelectorAll('.jobsheet-card').length;
+    const pct          = Math.round((cardCount / totalNum) * 100);
+    document.getElementById('totalCount').innerText     = totalNum;
+    document.getElementById('completedCount').innerText = completedNum;
+    setTimeout(() => {
+        document.getElementById('progressBar').style.width = pct + '%';
+        document.getElementById('progressText').innerText  = pct + '%';
+    }, 600);
+
+    // Animated counter
+    function animateCounter(id, target, dur) {
+        const el = document.getElementById(id); if (!el) return;
+        let v = 0; const step = target / (dur/16);
+        const t = setInterval(() => { v+=step; if(v>=target){v=target;clearInterval(t);} el.innerText=Math.floor(v); }, 16);
+    }
+    setTimeout(() => animateCounter('counterVal', cardCount, 1200), 3200);
+
+    // Particles
+    const pCont = document.getElementById('particles');
+    for (let i = 0; i < 25; i++) {
+        const p = document.createElement('div');
+        p.className = 'p-circle';
+        p.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-duration:${Math.random()*12+6}s;`;
+        pCont.appendChild(p);
+    }
+
+    // Mouse glow
+    const mouseGlow = document.getElementById('mouseGlow');
+    document.addEventListener('mousemove', e => { mouseGlow.style.left=e.clientX+'px'; mouseGlow.style.top=e.clientY+'px'; });
+
+    // Text scramble
+    class TextScramble {
+        constructor(el) { this.el=el; this.chars='!<>-_\\/[]{}—=+*^?#________'; this.update=this.update.bind(this); }
+        setText(text) {
+            const old=this.el.innerText, len=Math.max(old.length,text.length);
+            const p=new Promise(r=>this.resolve=r);
+            this.queue=[]; this.frame=0;
+            for(let i=0;i<len;i++) this.queue.push({from:old[i]||'',to:text[i]||'',start:Math.floor(Math.random()*40),end:Math.floor(Math.random()*40)+40,char:''});
+            cancelAnimationFrame(this.frameRequest); this.update(); return p;
+        }
+        update() {
+            let out='',done=0;
+            for(let i=0;i<this.queue.length;i++) {
+                let{from,to,start,end,char}=this.queue[i];
+                if(this.frame>=end){done++;out+=to;}
+                else if(this.frame>=start){if(!char||Math.random()<0.28){char=this.chars[Math.floor(Math.random()*this.chars.length)];this.queue[i].char=char;}out+=`<span class="dud">${char}</span>`;}
+                else out+=from;
+            }
+            this.el.innerHTML=out;
+            done===this.queue.length?this.resolve():(this.frameRequest=requestAnimationFrame(this.update),this.frame++);
+        }
+    }
+    document.querySelectorAll('.jobsheet-card').forEach(card => {
+        const t=card.querySelector('.scramble-target'), fx=new TextScramble(t);
+        card.addEventListener('mouseenter',()=>fx.setText(t.innerText));
+    });
+
+    // 3D tilt
+    document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r=card.getBoundingClientRect();
+            card.style.transform=`perspective(1000px) rotateY(${((e.clientX-r.left)/r.width-.5)*12}deg) rotateX(${((e.clientY-r.top)/r.height-.5)*-12}deg) translateY(-12px)`;
+        });
+        card.addEventListener('mouseleave',()=>card.style.transform='translateY(0) rotateX(0) rotateY(0)');
+    });
+
+    // Sparks on hover
+    function createSpark(cont, rect) {
+        for(let i=0;i<8;i++) {
+            const s=document.createElement('div'); s.className='spark';
+            s.style.cssText=`left:${Math.random()*rect.width}px;top:${Math.random()*rect.height}px;animation-delay:${Math.random()*0.3}s;`;
+            s.style.setProperty('--sx',(Math.random()-.5)*60+'px');
+            s.style.setProperty('--sy',(Math.random()-.5)*60+'px');
+            cont.appendChild(s); setTimeout(()=>s.remove(),800);
+        }
+    }
+    document.querySelectorAll('.tilt-card').forEach(card => {
+        const sc=card.querySelector('.spark-container');
+        card.addEventListener('mouseenter',()=>createSpark(sc,card.getBoundingClientRect()));
+    });
+
+    // Hover sound
+    const hoverSound = new Audio('data.mp3'); hoverSound.volume=0.2;
+    document.querySelectorAll('.jobsheet-card').forEach(c=>c.addEventListener('mouseenter',()=>{const s=hoverSound.cloneNode();s.volume=0.2;s.play().catch(()=>{});}));
+
+    // Typing effect
+    setTimeout(() => {
+        const welcome="Welcome to ", name="Hafiz's Workspace", h1=document.querySelector('h1');
+        let i=0;
+        (function tw(){
+            if(i<welcome.length){h1.innerHTML=welcome.substring(0,++i)+'<br><span class="text-neon" id="neonText"></span>';setTimeout(tw,80);}
+            else{let j=0;(function tn(){if(j<name.length){document.getElementById('neonText').innerText=name.substring(0,++j);setTimeout(tn,80);}})();}
+        })();
+    }, 800);
+
+    // Glow particles
+    const glowCont=document.getElementById('glowParticles');
+    for(let i=0;i<15;i++){
+        const g=document.createElement('div'); g.className='glow-particle';
+        g.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-delay:${Math.random()*5}s;animation-duration:${Math.random()*8+5}s;background:${i%2?'var(--accent-alt)':'var(--accent)'};`;
+        glowCont.appendChild(g);
+    }
+
+    // Data rain
+    const dataRain=document.getElementById('dataRain'), dataArr=['01','10','101','010','110','001','1010','0101'];
+    for(let i=0;i<20;i++){
+        const d=document.createElement('div'); d.className='data-string';
+        d.style.cssText=`left:${Math.random()*100}vw;animation-delay:${Math.random()*10}s;animation-duration:${Math.random()*10+10}s;opacity:${0.1+Math.random()*0.2};`;
+        d.innerText=dataArr[Math.floor(Math.random()*dataArr.length)];
+        dataRain.appendChild(d);
+    }
+
+    // Spotlight
+    document.addEventListener('mousemove',e=>{document.getElementById('spotlight').style.background=`radial-gradient(circle at ${e.clientX}px ${e.clientY}px,transparent 0%,rgba(0,0,0,0.5) 300px)`;});
+
+    // Aurora canvas
+    const aC=document.getElementById('auroraCanvas'), actx=aC.getContext('2d');
+    let AW,AH,aT=0;
+    const resA=()=>{AW=aC.width=innerWidth;AH=aC.height=innerHeight;};
+    resA(); addEventListener('resize',resA);
+    const orbs=[{x:.15,y:.2,r:.45,hue:160,ph:0},{x:.8,y:.75,r:.4,hue:145,ph:2},{x:.5,y:.5,r:.35,hue:172,ph:4}];
+    (function drawA(){
+        actx.clearRect(0,0,AW,AH);
+        orbs.forEach(o=>{
+            const ox=(o.x+Math.sin(aT*.0003+o.ph)*.12)*AW, oy=(o.y+Math.cos(aT*.0002+o.ph*1.3)*.1)*AH, r=o.r*Math.min(AW,AH);
+            const g=actx.createRadialGradient(ox,oy,0,ox,oy,r);
+            g.addColorStop(0,`hsla(${o.hue},75%,65%,.12)`); g.addColorStop(.5,`hsla(${o.hue+15},65%,55%,.05)`); g.addColorStop(1,`hsla(${o.hue},55%,45%,0)`);
+            actx.fillStyle=g; actx.beginPath(); actx.arc(ox,oy,r,0,Math.PI*2); actx.fill();
+        });
+        aT++; requestAnimationFrame(drawA);
+    })();
+
+    // Hex grid
+    const hC=document.getElementById('hexCanvas'), hctx=hC.getContext('2d');
+    function drawHex(){
+        const sz=32,w=hC.width=innerWidth,h=hC.height=innerHeight;
+        hctx.clearRect(0,0,w,h); hctx.strokeStyle='rgba(127,255,212,.04)'; hctx.lineWidth=1;
+        for(let r=-1;r<Math.ceil(h/(sz*1.5))+2;r++) for(let c=-1;c<Math.ceil(w/(sz*1.75))+2;c++){
+            const x=c*sz*1.75+(r%2?sz*.875:0), y=r*sz*1.5;
+            hctx.beginPath();
+            for(let s=0;s<6;s++){const a=Math.PI/180*(60*s-30);s?hctx.lineTo(x+sz*Math.cos(a),y+sz*Math.sin(a)):hctx.moveTo(x+sz*Math.cos(a),y+sz*Math.sin(a));}
+            hctx.closePath(); hctx.stroke();
+        }
+    }
+    drawHex(); addEventListener('resize',drawHex);
+
+    // Profile image glitch
+    const portal=document.getElementById('imagePortal'), gR=document.getElementById('glitchLayerR'), gG=document.getElementById('glitchLayerG');
+    function triggerGlitch(){
+        gR.style.backgroundImage=gG.style.backgroundImage="url('Hafiz.jpg')";
+        portal.classList.add('glitching');
+        let f=0; const t=setInterval(()=>{portal.classList.toggle('glitching');if(++f>=6){clearInterval(t);portal.classList.remove('glitching');}},80);
+    }
+    (function sg(){setTimeout(()=>{triggerGlitch();sg();},5000+Math.random()*7000);})();
+
+    // Card tooltip
+    const tip=document.getElementById('cardTooltip'); let tipOn=false;
+    document.querySelectorAll('.jobsheet-card').forEach(c=>{
+        c.addEventListener('mouseenter',()=>{tipOn=true; tip.classList.add('tooltip-show');});
+        c.addEventListener('mouseleave',()=>{tipOn=false;tip.classList.remove('tooltip-show');});
+    });
+    document.addEventListener('mousemove',e=>{if(tipOn){tip.style.left=(e.clientX+18)+'px';tip.style.top=(e.clientY-10)+'px';}});
+
+    // Card entry (intersection observer)
+    const io=new IntersectionObserver(entries=>entries.forEach(en=>{
+        if(en.isIntersecting){const c=en.target;setTimeout(()=>c.classList.add('card-visible'),(parseFloat(c.style.getPropertyValue('--delay'))||0)*1000);io.unobserve(c);}
+    }),{threshold:.1});
+    document.querySelectorAll('.card-hidden').forEach(c=>io.observe(c));
+
+    // Back to top
+    const btt=document.getElementById('backToTop');
+    addEventListener('scroll',()=>btt.classList.toggle('show',scrollY>300));
+    btt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+    // Glitch footer
+    const gFoot=document.getElementById('glitchFooter'), gOrig=gFoot.innerText, gC='!<>-_\\/[]{}—=+*^?#_';
+    setInterval(()=>{if(Math.random()>.7){gFoot.innerText=[...gOrig].map(c=>Math.random()>.8?gC[Math.floor(Math.random()*gC.length)]:c).join('');setTimeout(()=>gFoot.innerText=gOrig,100);}},2000);
+
+    // Navbar stats + session timer
+    setTimeout(()=>document.getElementById('navPercent').innerText=document.getElementById('progressText').innerText,800);
+    const t0=Date.now();
+    setInterval(()=>{
+        const e=Math.floor((Date.now()-t0)/1000);
+        document.getElementById('sessionTimer').innerText=`${String(Math.floor(e/3600)).padStart(2,'0')}:${String(Math.floor(e%3600/60)).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`;
+    },1000);
+
+    // Scroll progress
+    addEventListener('scroll',()=>{const max=document.body.scrollHeight-innerHeight;document.getElementById('scrollProgress').style.width=(max>0?scrollY/max*100:0)+'%';});
+
+    // Click ripple
+    document.addEventListener('click',e=>{const r=document.createElement('div');r.className='ripple-wave';r.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;`;document.getElementById('rippleContainer').appendChild(r);setTimeout(()=>r.remove(),800);});
+
+    // Holographic + shine + glow trail
+    document.querySelectorAll('.jobsheet-card').forEach(card=>{
+        card.addEventListener('mousemove',e=>{
+            const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+            card.style.setProperty('--holo-x',x*100+'%'); card.style.setProperty('--holo-y',y*100+'%');
+            card.classList.add('holo-active');
+            const sh=card.querySelector('.card-shine');
+            if(sh) sh.style.background=`radial-gradient(circle at ${x*100}% ${y*100}%,rgba(255,255,255,.06) 0%,transparent 55%)`;
+        });
+        card.addEventListener('mouseleave',()=>{
+            card.classList.remove('holo-active');
+            card.classList.add('glow-trail');
+            setTimeout(()=>card.classList.remove('glow-trail'),600);
+        });
+    });
+
+    // Matrix data rain flash (Hafiz exclusive)
+    setInterval(()=>{
+        const strings=document.querySelectorAll('.data-string'); if(!strings.length) return;
+        const p=strings[Math.floor(Math.random()*strings.length)];
+        p.style.color='rgba(127,255,212,.6)'; p.style.textShadow='0 0 10px rgba(127,255,212,.9)'; p.style.fontSize='1rem';
+        setTimeout(()=>{p.style.color='';p.style.textShadow='';p.style.fontSize='';},350);
+    },700);
+
+    // Hex grid pulse on card hover
+    document.querySelectorAll('.jobsheet-card').forEach(card=>{
+        card.addEventListener('mouseenter',()=>{const hc=document.getElementById('hexCanvas');if(hc){hc.style.opacity='.2';hc.style.transition='opacity .3s';}});
+        card.addEventListener('mouseleave',()=>{const hc=document.getElementById('hexCanvas');if(hc) hc.style.opacity='1';});
+    });
+
+    // Iris wipe exit
+    function irisExit(href) {
+        const svg=document.getElementById('irisSvg'), circle=document.getElementById('irisCircle');
+        svg.style.display='block';
+        const start=performance.now();
+        (function grow(now){
+            const t=Math.min((now-start)/650,1), ease=1-Math.pow(1-t,3);
+            circle.setAttribute('r',90*ease);
+            t<1?requestAnimationFrame(grow):setTimeout(()=>location.href=href,40);
+        })(performance.now());
+    }
+    document.querySelectorAll('a').forEach(link=>{
+        const href=link.getAttribute('href');
+        if(!href||href==='#'||href.startsWith('http')||href.startsWith('mailto')) return;
+        link.addEventListener('click',e=>{e.preventDefault();irisExit(href);});
+    });
+
+    // Venetian blinds enter
+    (function(){
+        const wrap=document.getElementById('venetianWrap'); if(!wrap) return;
+        const strips=[];
+        for(let i=0;i<10;i++){
+            const s=document.createElement('div'); s.className='vblind';
+            s.style.top=(i*10)+'vh'; s.style.height='10vh'; s.style.transitionDelay=(i*.055)+'s';
+            wrap.appendChild(s); strips.push(s);
+        }
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            strips.forEach(s=>s.classList.add('vblind-open'));
+            setTimeout(()=>wrap.remove(),900);
+        }));
+    })();
+
+    console.log('Hafiz WOW mode ON');
+</script>
+</body>
+</html>

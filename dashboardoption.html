@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace Selector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;600;700;800&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="optionstyle.css">
+</head>
+<body>
+
+    <svg class="iris-svg" id="irisSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle id="irisCircle" cx="50" cy="50" r="0" fill="#070709"/>
+    </svg>
+
+    <div class="split-reveal" id="splitReveal">
+        <div class="split-left"  id="splitLeft"></div>
+        <div class="split-right" id="splitRight"></div>
+    </div>
+
+    <div class="code-symbols" id="codeSymbols"></div>
+
+    <div class="live-clock" id="liveClock">
+        <span class="clock-time" id="clockTime">00:00:00</span>
+        <span class="clock-date" id="clockDate"></span>
+    </div>
+
+    <div class="cursor" id="cursor"></div>
+
+    <div class="boot-overlay" id="bootOverlay">
+        <div class="boot-logo-wrap">
+            <div class="boot-logo" id="bootLogo">IKML</div>
+            <div class="boot-logo-sub" id="bootLogoSub">Mobile Application Development</div>
+            <div class="boot-logo-bar"><div class="boot-logo-fill" id="bootLogoFill"></div></div>
+        </div>
+    </div>
+
+    <div class="scroll-prog" id="scrollProg"></div>
+    <canvas class="aurora" id="aurora"></canvas>
+    <div class="grid-overlay"></div>
+    <div class="particles" id="particles"></div>
+    <div class="ripple-cont" id="rippleCont"></div>
+
+    <div class="main" id="main">
+        <span class="badge">// WORKSPACE SELECTOR</span>
+
+        <h1>
+            <span class="title-choose">Choose Your</span>
+            <span class="title-terminal">Terminal.</span>
+        </h1>
+
+        <p class="subtitle" id="subtitle"><span class="subtitle-cursor">_</span></p>
+
+        <div class="option-container">
+
+            <a href="dashboard1.html" class="option-card akma-card" id="akmaCard">
+                <div class="card-content">
+                    <div class="avatar-wrap">
+                        <div class="avatar-ring"></div>
+                        <div class="avatar"><img src="kema6.jpeg" alt="Akma"></div>
+                    </div>
+                    <h2>Akma's Dashboard</h2>
+                    <p>// akma.workspace.terminal</p>
+                    <span class="enter-btn"><i class="ri-terminal-line"></i> ACCESS TERMINAL</span>
+                </div>
+                <div class="card-glow"></div>
+                <div class="burst-cont" id="burstAkma"></div>
+            </a>
+
+            <a href="dashboard2.html" class="option-card hafiz-card" id="hafizCard">
+                <div class="card-content">
+                    <div class="avatar-wrap">
+                        <div class="avatar-ring"></div>
+                        <div class="avatar"><img src="Hafiz.jpg" alt="Hafiz"></div>
+                    </div>
+                    <h2>Hafiz's Dashboard</h2>
+                    <p>// hafiz.workspace.terminal</p>
+                    <span class="enter-btn"><i class="ri-terminal-line"></i> ACCESS TERMINAL</span>
+                </div>
+                <div class="card-glow"></div>
+                <div class="burst-cont" id="burstHafiz"></div>
+            </a>
+
+        </div>
+
+        <a href="index.html" class="back-link">
+            <i class="ri-arrow-left-line"></i> Return to Main Terminal
+        </a>
+    </div>
+
+    <footer class="glitch-footer">
+        <span class="glitch-foot-text" id="glitchFoot">© 2026 IKML — Mobile Application Development</span>
+    </footer>
+
+<script>
+    // Cursor
+    const cur = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+        cur.style.left = e.clientX + 'px';
+        cur.style.top  = e.clientY + 'px';
+    });
+    document.getElementById('akmaCard').addEventListener('mouseenter',  () => cur.classList.add('on-pink','active'));
+    document.getElementById('akmaCard').addEventListener('mouseleave',  () => cur.classList.remove('on-pink','active'));
+    document.getElementById('hafizCard').addEventListener('mouseenter', () => cur.classList.add('on-green','active'));
+    document.getElementById('hafizCard').addEventListener('mouseleave', () => cur.classList.remove('on-green','active'));
+    document.querySelectorAll('a.back-link').forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('active'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('active'));
+    });
+
+    // Boot — IKML logo fade in → loading bar → shrink exit → split reveal
+    (function() {
+        const overlay = document.getElementById('bootOverlay');
+        const logo    = document.getElementById('bootLogo');
+        const sub     = document.getElementById('bootLogoSub');
+        const fill    = document.getElementById('bootLogoFill');
+
+        setTimeout(() => logo.classList.add('show'), 200);
+        setTimeout(() => sub.classList.add('show'),  700);
+
+        let w = 0;
+        setTimeout(() => {
+            const bar = setInterval(() => {
+                fill.style.width = (w += 2) + '%';
+                if (w >= 100) {
+                    clearInterval(bar);
+                    setTimeout(() => {
+                        logo.classList.add('shrink');
+                        sub.classList.add('shrink');
+                        overlay.classList.add('done');
+                        setTimeout(() => {
+                            overlay.remove();
+                            document.getElementById('main').classList.add('reveal');
+                            startSubtitle();
+                            startSplitReveal();
+                        }, 700);
+                    }, 300);
+                }
+            }, 18);
+        }, 900);
+    })();
+
+    // Subtitle typewriter
+    function startSubtitle() {
+        const text = 'Select your dedicated workspace to manage jobsheets.';
+        const el   = document.getElementById('subtitle');
+        let i = 0;
+        (function type() {
+            if (i < text.length) {
+                el.innerHTML = text.substring(0, ++i) + '<span class="subtitle-cursor">_</span>';
+                setTimeout(type, 38);
+            }
+        })();
+    }
+
+    // Aurora background
+    const aC  = document.getElementById('aurora');
+    const actx = aC.getContext('2d');
+    let AW, AH, aT = 0;
+    const resizeA = () => { AW = aC.width = innerWidth; AH = aC.height = innerHeight; };
+    resizeA(); addEventListener('resize', resizeA);
+    const aOrbs = [
+        { x:0.15, y:0.3,  r:0.5,  hue:340, phase:0 },
+        { x:0.85, y:0.7,  r:0.45, hue:160, phase:2 },
+        { x:0.5,  y:0.5,  r:0.3,  hue:320, phase:4 },
+    ];
+    (function drawA() {
+        actx.clearRect(0, 0, AW, AH);
+        aOrbs.forEach(o => {
+            const ox = (o.x + Math.sin(aT*0.0003+o.phase)*0.1) * AW;
+            const oy = (o.y + Math.cos(aT*0.0002+o.phase*1.3)*0.09) * AH;
+            const r  = o.r * Math.min(AW, AH);
+            const g  = actx.createRadialGradient(ox,oy,0,ox,oy,r);
+            g.addColorStop(0,   `hsla(${o.hue},75%,65%,0.1)`);
+            g.addColorStop(0.5, `hsla(${o.hue+15},65%,55%,0.04)`);
+            g.addColorStop(1,   `hsla(${o.hue},55%,45%,0)`);
+            actx.fillStyle = g;
+            actx.beginPath(); actx.arc(ox, oy, r, 0, Math.PI*2); actx.fill();
+        });
+        aT++; requestAnimationFrame(drawA);
+    })();
+
+    // Floating particles
+    const pCont   = document.getElementById('particles');
+    const pColors = ['rgba(244,167,185,','rgba(127,255,212,','rgba(255,255,255,'];
+    for (let i = 0; i < 30; i++) {
+        const p   = document.createElement('div');
+        const col = pColors[i % 3];
+        const sz  = Math.random()*3+1;
+        p.className = 'p-dot';
+        p.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}px;height:${sz}px;background:${col}${Math.random()*0.15+0.05});animation-duration:${Math.random()*10+8}s;animation-delay:${Math.random()*5}s;`;
+        pCont.appendChild(p);
+    }
+
+    // Click ripple
+    document.addEventListener('click', e => {
+        const r = document.createElement('div');
+        r.className = 'ripple-w';
+        r.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;`;
+        document.getElementById('rippleCont').appendChild(r);
+        setTimeout(() => r.remove(), 800);
+    });
+
+    // Particle burst on card hover
+    function burst(id, color) {
+        const cont = document.getElementById(id);
+        if (!cont) return;
+        const rect = cont.parentElement.getBoundingClientRect();
+        for (let i = 0; i < 12; i++) {
+            const p = document.createElement('div');
+            p.className = 'burst-p';
+            const sz = Math.random()*4+2;
+            p.style.cssText = `left:${Math.random()*rect.width}px;top:${Math.random()*rect.height}px;width:${sz}px;height:${sz}px;background:${color};box-shadow:0 0 6px ${color};--bx:${(Math.random()-0.5)*80}px;--by:${(Math.random()-0.5)*80}px;animation-delay:${Math.random()*0.2}s;`;
+            cont.appendChild(p);
+            setTimeout(() => p.remove(), 800);
+        }
+    }
+    document.getElementById('akmaCard').addEventListener('mouseenter',  () => burst('burstAkma', 'rgba(244,167,185,0.8)'));
+    document.getElementById('hafizCard').addEventListener('mouseenter', () => burst('burstHafiz','rgba(127,255,212,0.7)'));
+
+    // 3D card tilt
+    document.querySelectorAll('.option-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width  - 0.5;
+            const y = (e.clientY - r.top)  / r.height - 0.5;
+            card.style.transform = `perspective(1000px) rotateY(${x*12}deg) rotateX(${y*-12}deg) translateY(-16px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    });
+
+    // Iris wipe exit
+    function irisExit(href) {
+        const svg    = document.getElementById('irisSvg');
+        const circle = document.getElementById('irisCircle');
+        svg.style.display = 'block';
+        const start = performance.now();
+        (function grow(now) {
+            const t = Math.min((now - start) / 600, 1);
+            circle.setAttribute('r', 90 * (1 - Math.pow(1-t, 3)));
+            t < 1 ? requestAnimationFrame(grow) : setTimeout(() => location.href = href, 50);
+        })(performance.now());
+    }
+    document.querySelectorAll('a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#' || href.startsWith('http')) return;
+        link.addEventListener('click', e => { e.preventDefault(); irisExit(href); });
+    });
+
+    // Split curtain reveal on page enter
+    function startSplitReveal() {
+        const left = document.getElementById('splitLeft');
+        const right= document.getElementById('splitRight');
+        const wrap = document.getElementById('splitReveal');
+        wrap.style.display = 'flex';
+        const start = performance.now();
+        (function animate(now) {
+            const t    = Math.min((now - start) / 800, 1);
+            const ease = 1 - Math.pow(1-t, 4);
+            left.style.transform  = `translateX(${-ease*100}%)`;
+            right.style.transform = `translateX(${ease*100}%)`;
+            t < 1 ? requestAnimationFrame(animate) : (wrap.style.opacity = '0', setTimeout(() => wrap.remove(), 300));
+        })(performance.now());
+    }
+
+    // Live clock
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clockTime').innerText = now.toLocaleTimeString('en-MY', { hour12:false });
+        document.getElementById('clockDate').innerText = now.toLocaleDateString('en-MY', { weekday:'short', day:'2-digit', month:'short' }).toUpperCase();
+    }
+    updateClock(); setInterval(updateClock, 1000);
+
+    // Floating code symbols background
+    const symbols = ['{}','</>','()','=> ','/*','*/','[]','&&','||','!=','==','++','--','??','::'];
+    const symCont = document.getElementById('codeSymbols');
+    for (let i = 0; i < 18; i++) {
+        const s = document.createElement('div');
+        s.className = 'code-sym';
+        s.innerText = symbols[i % symbols.length];
+        s.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*8}s;font-size:${Math.random()*0.5+0.55}rem;opacity:${Math.random()*0.08+0.03};`;
+        symCont.appendChild(s);
+    }
+
+    // Glitch footer text
+    (function() {
+        const el    = document.getElementById('glitchFoot');
+        const orig  = el.innerText;
+        const chars = '!<>-_\/[]{}=+*^?#@&%';
+        setInterval(() => {
+            if (Math.random() > 0.65) {
+                el.innerText = [...orig].map(c => Math.random() > 0.85 ? chars[Math.floor(Math.random()*chars.length)] : c).join('');
+                setTimeout(() => el.innerText = orig, 90);
+            }
+        }, 2200);
+    })();
+</script>
+</body>
+</html>

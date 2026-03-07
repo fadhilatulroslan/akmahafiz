@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page | Akma & Hafiz</title>
+    <link rel="stylesheet" href="indexstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="cursor-crosshair" id="cursorCross"></div>
+    <div class="cursor-trail-container" id="trailContainer"></div>
+
+    <svg class="iris-svg" id="irisSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle id="irisCircle" cx="50" cy="50" r="0" fill="#0a090b"/>
+    </svg>
+
+    <div class="split-reveal" id="splitReveal">
+        <div class="split-left"></div>
+        <div class="split-right"></div>
+    </div>
+
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-ikml-wrap">
+            <div class="loader-ikml-logo" id="ikmlLogo">IKML</div>
+            <div class="loader-ikml-sub" id="ikmlSub">Mobile Application Development</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar" id="loadBar"></div>
+            </div>
+            <div class="loader-text">INITIALIZING SYSTEM... <span id="loadText">0%</span></div>
+        </div>
+    </div>
+
+    <div class="floating-shapes">
+        <div class="shape3d shape-hex"></div>
+        <div class="shape3d shape-ring"></div>
+        <div class="shape3d shape-diamond"></div>
+        <div class="shape3d shape-cross"></div>
+    </div>
+
+    <div class="cursor-aura" id="aura"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <div class="floating-icons">
+        <div class="floating-icon" style="top:15%;left:10%;">{  }</div>
+        <div class="floating-icon" style="top:70%;left:85%;">< /></div>
+        <div class="floating-icon" style="top:80%;left:15%;">/* */</div>
+        <div class="floating-icon" style="top:25%;left:80%;">$_$</div>
+        <div class="floating-icon" style="top:60%;left:5%;">></div>
+    </div>
+
+    <div class="grid-background"></div>
+    <div class="abstract-shape shape-1"></div>
+    <div class="abstract-shape shape-2"></div>
+
+    <div class="top-bar">
+        <div class="system-time" id="clock">00:00:00</div>
+        <div class="top-date" id="topDate"></div>
+        <div class="system-status">&#9679; SYSTEM ONLINE</div>
+    </div>
+
+    <div class="main-container">
+        <div class="portal-card pulse-border" id="mainCard">
+            <div class="scanline"></div>
+            <div class="card-shine"></div>
+            <div class="corner-deco corner-tl"></div>
+            <div class="corner-deco corner-tr"></div>
+            <div class="corner-deco corner-bl"></div>
+            <div class="corner-deco corner-br"></div>
+            <div class="parallax-layer layer-1"></div>
+            <div class="parallax-layer layer-2"></div>
+            <div class="time-greeting" id="timeGreeting"></div>
+            <span class="system-label" id="dynamicLabel">Mobile Application Development</span>
+            <h1>Welcome to Our <br><span class="text-gradient pulse-animation glitch-hover flicker-text">Workspace</span></h1>
+            <p class="description" id="typingDescription"></p>
+            <div class="btn-group">
+                <div class="magnetic-area">
+                    <div class="magnetic-wrap">
+                        <a href="#" class="nav-btn btn-primary" id="launchBtn">
+                            <span>Launch Workspace</span>
+                            <div class="btn-glow"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="magnetic-area">
+                    <div class="magnetic-wrap">
+                        <a href="aboutus.html" class="nav-btn btn-outline">
+                            <span>Explore About Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-container">
+        <div class="music-ctrl" id="musicBtn">
+            <div class="equalizer">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+            <span class="music-text">SOUND OFF</span>
+        </div>
+        <div class="volume-panel">
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop><source src="folded.mp3" type="audio/mpeg"></audio>
+    <div class="explosion-container" id="explosionContainer"></div>
+
+    <div class="scroll-indicator">
+        <span>&gt;_</span>
+        <div class="scroll-line"></div>
+    </div>
+
+    <!-- UPGRADED MODAL -->
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeBtn">&times;</button>
+            <div class="modal-header">
+                <span class="badge-mini">// Workspace Selector</span>
+                <h2 class="modal-title">Choose Your <span class="text-gradient">Terminal</span></h2>
+                <p class="modal-sub">Select your dedicated workspace to continue.</p>
+            </div>
+            <div class="option-container">
+                <a href="dashboard1.html" class="option-card akma-modal-card" id="akmaModalCard">
+                    <div class="modal-card-border-trace"></div>
+                    <div class="card-inner">
+                        <div class="modal-avatar-wrap">
+                            <div class="modal-avatar-ring akma-ring"></div>
+                            <div class="avatar">
+                                <img src="kema6.jpeg" alt="Akma" class="avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="avatar-placeholder" style="display:none">A</div>
+                            </div>
+                        </div>
+                        <h3>Akma's Space</h3>
+                        <p class="modal-card-sub">// akma.workspace.terminal</p>
+                        <span class="enter-btn akma-enter">Access Terminal &#8594;</span>
+                    </div>
+                    <div class="card-glow pink-glow"></div>
+                    <div class="modal-burst-cont" id="mBurstAkma"></div>
+                </a>
+                <a href="dashboard2.html" class="option-card hafiz-modal-card" id="hafizModalCard">
+                    <div class="modal-card-border-trace"></div>
+                    <div class="card-inner">
+                        <div class="modal-avatar-wrap">
+                            <div class="modal-avatar-ring hafiz-ring"></div>
+                            <div class="avatar">
+                                <img src="Hafiz.jpg" alt="Hafiz" class="avatar-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="avatar-placeholder" style="display:none">H</div>
+                            </div>
+                        </div>
+                        <h3>Hafiz's Space</h3>
+                        <p class="modal-card-sub">// hafiz.workspace.terminal</p>
+                        <span class="enter-btn hafiz-enter">Access Terminal &#8594;</span>
+                    </div>
+                    <div class="card-glow green-glow"></div>
+                    <div class="modal-burst-cont" id="mBurstHafiz"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-line"></div>
+        <span id="glitchFoot">&#169; 2026 IKML &#8226; AKMA &amp; HAFIZ</span>
+        <div class="sound-wave" id="soundWave">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <script>
+        // CURSOR
+        const cross = document.getElementById('cursorCross');
+        document.addEventListener('mousemove', e => {
+            cross.style.left = e.clientX + 'px';
+            cross.style.top  = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, .music-ctrl').forEach(el => {
+            el.addEventListener('mouseenter', () => cross.classList.add('cursor-active'));
+            el.addEventListener('mouseleave', () => cross.classList.remove('cursor-active'));
+        });
+
+        // CURSOR TRAIL
+        const trailCont = document.getElementById('trailContainer');
+        let lastTrail = 0;
+        document.addEventListener('mousemove', e => {
+            const now = Date.now();
+            if (now - lastTrail < 45) return;
+            lastTrail = now;
+            const dot = document.createElement('div');
+            dot.className = 'trail-dot';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top  = e.clientY + 'px';
+            trailCont.appendChild(dot);
+            setTimeout(() => dot.remove(), 600);
+        });
+
+        // IKML LOADER
+        window.addEventListener('load', () => {
+            const logo = document.getElementById('ikmlLogo');
+            const sub  = document.getElementById('ikmlSub');
+            const bar  = document.getElementById('loadBar');
+            const txt  = document.getElementById('loadText');
+            setTimeout(() => logo.classList.add('show'), 150);
+            setTimeout(() => sub.classList.add('show'), 600);
+            let progress = 0;
+            setTimeout(() => {
+                const iv = setInterval(() => {
+                    progress += Math.floor(Math.random() * 8) + 2;
+                    if (progress >= 100) {
+                        progress = 100; clearInterval(iv);
+                        bar.style.width = '100%'; txt.innerText = '100%';
+                        setTimeout(() => {
+                            logo.classList.add('shrink'); sub.classList.add('shrink');
+                            setTimeout(() => {
+                                document.getElementById('loader').classList.add('hide');
+                                startSplitReveal();
+                            }, 500);
+                        }, 300);
+                    }
+                    bar.style.width = progress + '%'; txt.innerText = progress + '%';
+                }, 80);
+            }, 800);
+        });
+
+        // SPLIT REVEAL
+        function startSplitReveal() {
+            const rev   = document.getElementById('splitReveal');
+            const left  = rev.querySelector('.split-left');
+            const right = rev.querySelector('.split-right');
+            rev.style.display = 'flex';
+            const dur = 750, start = performance.now();
+            function animate(now) {
+                const t = Math.min((now - start) / dur, 1);
+                const ease = 1 - Math.pow(1 - t, 4);
+                left.style.transform  = 'translateX(' + (-ease * 100) + '%)';
+                right.style.transform = 'translateX(' + (ease * 100) + '%)';
+                if (t < 1) requestAnimationFrame(animate);
+                else { rev.style.opacity = '0'; setTimeout(() => rev.remove(), 300); }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // IRIS EXIT
+        function irisExit(href) {
+            const svg = document.getElementById('irisSvg');
+            const circle = document.getElementById('irisCircle');
+            svg.style.display = 'block';
+            const dur = 600, start = performance.now();
+            function grow(now) {
+                const t = Math.min((now - start) / dur, 1);
+                const ease = 1 - Math.pow(1 - t, 3);
+                circle.setAttribute('r', 90 * ease);
+                if (t < 1) requestAnimationFrame(grow);
+                else setTimeout(() => window.location.href = href, 40);
+            }
+            requestAnimationFrame(grow);
+        }
+
+        // CLOCK
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText =
+                now.getHours().toString().padStart(2,'0') + ':' +
+                now.getMinutes().toString().padStart(2,'0') + ':' +
+                now.getSeconds().toString().padStart(2,'0');
+            const days   = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+            const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+            document.getElementById('topDate').innerText =
+                days[now.getDay()] + ' ' + now.getDate().toString().padStart(2,'0') + ' ' +
+                months[now.getMonth()] + ' ' + now.getFullYear();
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        // GREETING
+        function updateGreeting() {
+            const h = new Date().getHours();
+            document.getElementById('timeGreeting').innerHTML =
+                h<5||h>=20 ? '🌙 Good Night' :
+                h<12       ? '🌅 Good Morning' :
+                h<17       ? '☀️ Good Afternoon' : '🌆 Good Evening';
+        }
+        updateGreeting(); setInterval(updateGreeting, 60000);
+
+        // TYPING
+        const descText = "Explore the digital workspace of Akma & Hafiz. A curated hub showcasing our journey, creative projects, and technical jobsheets developed throughout our Mobile Application Development course.";
+        const typingEl = document.getElementById('typingDescription');
+        let charIdx = 0;
+        function typeWriter() {
+            if (charIdx < descText.length) {
+                typingEl.innerHTML += descText.charAt(charIdx++);
+                setTimeout(typeWriter, 28);
+            }
+        }
+        setTimeout(typeWriter, 1500);
+
+        // MUSIC
+        const bgMusic   = document.getElementById('bgMusic');
+        const musicBtn  = document.getElementById('musicBtn');
+        const volSlider = document.getElementById('volumeSlider');
+        const musicText = document.querySelector('.music-text');
+        const soundWave = document.getElementById('soundWave');
+        bgMusic.volume  = 0.5;
+        musicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play(); musicBtn.classList.add('playing');
+                musicText.innerText = 'FOLDED - ON'; soundWave.classList.add('active');
+            } else {
+                bgMusic.pause(); musicBtn.classList.remove('playing');
+                musicText.innerText = 'SOUND OFF'; soundWave.classList.remove('active');
+            }
+        });
+        volSlider.addEventListener('input', e => {
+            bgMusic.volume = e.target.value;
+            if (e.target.value == 0) musicText.innerText = 'MUTED';
+            else if (!bgMusic.paused) musicText.innerText = 'FOLDED - ON';
+        });
+
+        // PARTICLES
+        const pContainer = document.getElementById('particles');
+        for (let i = 0; i < 35; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random()*100+'vw'; p.style.top = Math.random()*100+'vh';
+            p.style.animationDelay = Math.random()*5+'s';
+            p.style.width = p.style.height = (Math.random()*3+2)+'px';
+            pContainer.appendChild(p);
+        }
+
+        // MOUSE PARALLAX
+        const aura = document.getElementById('aura');
+        const mainCard = document.getElementById('mainCard');
+        const modal = document.getElementById('dashboardModal');
+        document.addEventListener('mousemove', e => {
+            aura.style.left = e.clientX+'px'; aura.style.top = e.clientY+'px';
+            if (!modal.classList.contains('show')) {
+                const xA = (window.innerWidth/2  - e.pageX)/45;
+                const yA = (window.innerHeight/2 - e.pageY)/45;
+                mainCard.style.transform = 'rotateY('+xA+'deg) rotateX('+yA+'deg)';
+                const l1 = mainCard.querySelector('.layer-1');
+                const l2 = mainCard.querySelector('.layer-2');
+                if (l1) l1.style.transform = 'translate('+(xA*0.5)+'px,'+(yA*0.5)+'px)';
+                if (l2) l2.style.transform = 'translate('+(xA*-0.8)+'px,'+(yA*-0.8)+'px)';
+            }
+        });
+
+        // EXPLOSION
+        function createExplosion(x, y) {
+            const cont = document.getElementById('explosionContainer');
+            for (let i = 0; i < 12; i++) {
+                const p = document.createElement('div');
+                p.className = 'explosion-particle';
+                p.style.left = x+'px'; p.style.top = y+'px';
+                p.style.setProperty('--dx', (Math.random()-0.5)*200+'px');
+                p.style.setProperty('--dy', (Math.random()-0.5)*200+'px');
+                p.style.background = 'hsl('+(Math.random()*60+280)+',80%,70%)';
+                cont.appendChild(p);
+                setTimeout(() => p.remove(), 1000);
+            }
+        }
+        document.addEventListener('click', e => createExplosion(e.clientX, e.clientY));
+
+        // ANIMATED CORNERS
+        let cAngle = 0;
+        setInterval(() => {
+            cAngle = (cAngle + 1.5) % 360;
+            const alpha = 0.3 + 0.3 * Math.sin(cAngle * Math.PI / 180);
+            const glow  = 'rgba(251,194,235,' + alpha + ')';
+            document.querySelectorAll('.corner-deco').forEach(c => {
+                c.style.borderColor = glow;
+                c.style.boxShadow   = '0 0 8px ' + glow;
+            });
+        }, 30);
+
+        // MODAL
+        const launchBtn = document.getElementById('launchBtn');
+        const closeBtn  = document.getElementById('closeBtn');
+        launchBtn.addEventListener('click', e => {
+            e.preventDefault();
+            launchBtn.classList.add('power-mode');
+            setTimeout(() => launchBtn.classList.remove('power-mode'), 300);
+            modal.classList.add('show');
+        });
+        closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+
+        // MODAL CARD BURST
+        function modalBurst(id, color) {
+            const cont = document.getElementById(id);
+            if (!cont) return;
+            const rect = cont.parentElement.getBoundingClientRect();
+            for (let i = 0; i < 10; i++) {
+                const p = document.createElement('div');
+                p.className = 'modal-burst-p';
+                const size = Math.random()*4+2;
+                p.style.cssText = 'left:'+(Math.random()*rect.width)+'px;top:'+(Math.random()*rect.height)+'px;width:'+size+'px;height:'+size+'px;background:'+color+';box-shadow:0 0 6px '+color+';--bx:'+((Math.random()-0.5)*70)+'px;--by:'+((Math.random()-0.5)*70)+'px;animation-delay:'+(Math.random()*0.15)+'s;';
+                cont.appendChild(p);
+                setTimeout(() => p.remove(), 700);
+            }
+        }
+        document.getElementById('akmaModalCard').addEventListener('mouseenter',  () => modalBurst('mBurstAkma',  'rgba(244,167,185,0.8)'));
+        document.getElementById('hafizModalCard').addEventListener('mouseenter', () => modalBurst('mBurstHafiz', 'rgba(127,255,212,0.7)'));
+
+        // MODAL 3D TILT
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX-r.left)/r.width-0.5, y = (e.clientY-r.top)/r.height-0.5;
+                card.style.transform = 'perspective(800px) rotateY('+(x*10)+'deg) rotateX('+(y*-10)+'deg) translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(-8px)';
+                setTimeout(() => card.style.transform = '', 400);
+            });
+        });
+
+        // IRIS EXIT FROM MODAL
+        document.querySelectorAll('.option-card').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                if (!href || href === '#') return;
+                e.preventDefault(); irisExit(href);
+            });
+        });
+
+        // MAGNETIC BUTTONS
+        document.querySelectorAll('.magnetic-area').forEach(area => {
+            area.addEventListener('mousemove', e => {
+                const btn = area.querySelector('.nav-btn');
+                const rect = area.getBoundingClientRect();
+                btn.style.transform = 'translate('+((e.clientX-rect.left-rect.width/2)*0.3)+'px,'+((e.clientY-rect.top-rect.height/2)*0.4)+'px) scale(1.03)';
+            });
+            area.addEventListener('mouseleave', () => {
+                area.querySelector('.nav-btn').style.transform = 'translate(0,0) scale(1)';
+            });
+        });
+
+        // DYNAMIC LABEL
+        const dynamicLabel = document.getElementById('dynamicLabel');
+        const labelTexts = ['Mobile Application Development','AKMA & HAFIZ WORKSPACE','MOBILE APP PROJECT'];
+        let labelIndex = 0;
+        setInterval(() => {
+            labelIndex = (labelIndex+1)%labelTexts.length;
+            dynamicLabel.style.opacity = '0'; dynamicLabel.style.transform = 'translateY(-8px)';
+            setTimeout(() => {
+                dynamicLabel.textContent = labelTexts[labelIndex];
+                dynamicLabel.style.opacity = '1'; dynamicLabel.style.transform = 'translateY(0)';
+            }, 300);
+        }, 3000);
+
+        // GLITCH FOOTER
+        const gFoot = document.getElementById('glitchFoot');
+        const gOrig = gFoot.innerText;
+        const gChars = '!<>-_\\/[]{}=+*^?#@&%';
+        setInterval(() => {
+            if (Math.random() > 0.65) {
+                gFoot.innerText = [...gOrig].map(c => Math.random()>0.85 ? gChars[Math.floor(Math.random()*gChars.length)] : c).join('');
+                setTimeout(() => gFoot.innerText = gOrig, 90);
+            }
+        }, 2500);
+
+    </script>
+</body>
+</html>

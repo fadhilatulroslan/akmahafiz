@@ -1,0 +1,291 @@
+:root {
+    --bg-dark:   #070d0b;
+    --card-bg:   rgba(255,255,255,0.02);
+    --accent:    #7fffd4;
+    --accent-alt:#4caf8a;
+    --border:    rgba(127,255,212,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; cursor:none; }
+
+body { font-family:'Fira Code',monospace; background:var(--bg-dark); color:white; min-height:100vh; overflow-x:hidden; position:relative; }
+
+/* Scanline */
+body::after {
+    content:''; position:fixed; inset:0;
+    background:linear-gradient(rgba(0,0,0,0) 50%,rgba(127,255,212,.015) 50%) 0 0/100% 4px;
+    pointer-events:none; z-index:9999; opacity:.3; animation:scanlineMove 8s linear infinite;
+}
+@keyframes scanlineMove { to{background-position:0 10px;} }
+
+/* Cursor */
+.cursor-crosshair { position:fixed; width:20px; height:20px; pointer-events:none; z-index:99999; transform:translate(-50%,-50%); }
+.cursor-crosshair::before { content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:var(--accent); transform:translateY(-50%); box-shadow:0 0 6px var(--accent); }
+.cursor-crosshair::after  { content:''; position:absolute; left:50%; top:0; width:1px; height:100%; background:var(--accent); transform:translateX(-50%); box-shadow:0 0 6px var(--accent); }
+.cursor-crosshair.cursor-active { width:30px; height:30px; }
+.cursor-crosshair.cursor-active::before,
+.cursor-crosshair.cursor-active::after { box-shadow:0 0 12px var(--accent),0 0 24px rgba(127,255,212,.4); }
+
+/* Aurora */
+.aurora-canvas { position:fixed; inset:0; z-index:-3; pointer-events:none; }
+
+/* Hex grid */
+.hex-canvas { position:fixed; inset:0; z-index:-2; pointer-events:none; }
+
+/* Background glow */
+.glow-bg {
+    position:fixed; inset:0;
+    background: radial-gradient(circle at 10% 10%,rgba(127,255,212,.07) 0%,transparent 40%),
+                radial-gradient(circle at 90% 90%,rgba(76,175,138,.07) 0%,transparent 40%);
+    z-index:-4; animation:glowMove 20s infinite alternate;
+}
+@keyframes glowMove { from{transform:scale(1);} to{transform:scale(1.2);} }
+
+/* Glow particles */
+.glow-particles { position:fixed; inset:0; z-index:-1; pointer-events:none; }
+.glow-particle  { position:absolute; width:6px; height:6px; border-radius:50%; filter:blur(3px); opacity:.3; animation:floatGlow 10s infinite alternate; }
+@keyframes floatGlow { 0%{transform:translate(0,0) scale(1);opacity:.2;} 100%{transform:translate(30px,-30px) scale(2);opacity:.6;} }
+
+/* Data rain */
+.data-rain    { position:fixed; inset:0; z-index:-1; pointer-events:none; font-family:'Fira Code',monospace; color:rgba(127,255,212,.05); font-size:.8rem; overflow:hidden; }
+.data-string  { position:absolute; white-space:nowrap; animation:dataFall 15s linear infinite; }
+@keyframes dataFall { from{transform:translateY(-100vh);} to{transform:translateY(100vh);} }
+
+/* Floating shapes */
+.floating-shapes { position:fixed; inset:0; z-index:-1; pointer-events:none; }
+.shape3d { position:absolute; border:1px solid rgba(127,255,212,.08); animation:floatShape 20s infinite alternate ease-in-out; }
+.shape-cube    { width:80px; height:80px; top:10%; right:5%; transform:rotate(45deg); border-color:var(--accent); box-shadow:0 0 30px rgba(127,255,212,.15); animation-duration:25s; }
+.shape-pyramid { width:0; height:0; border-left:50px solid transparent; border-right:50px solid transparent; border-bottom:100px solid rgba(127,255,212,.07); bottom:10%; left:5%; animation-duration:30s; }
+.shape-sphere  { width:100px; height:100px; border-radius:50%; background:radial-gradient(circle at 30% 30%,rgba(127,255,212,.08),transparent); top:60%; right:15%; animation-duration:22s; }
+.shape-torus   { width:120px; height:60px; border-radius:50%; border:20px solid rgba(127,255,212,.04); bottom:20%; right:20%; animation-duration:28s; }
+@keyframes floatShape { 0%{transform:translate(0,0) rotate(0deg) scale(1);} 100%{transform:translate(30px,-50px) rotate(180deg) scale(1.2);} }
+
+/* Spotlight */
+.spotlight { position:fixed; inset:0; pointer-events:none; z-index:-1; mix-blend-mode:multiply; }
+
+/* Navbar */
+.navbar { background:rgba(7,13,11,.8); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:1.2rem 0; position:sticky; top:0; z-index:100; }
+.nav-container { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; padding:0 30px; align-items:center; }
+.nav-logo { font-family:'Orbitron',sans-serif; font-weight:700; font-size:1.3rem; color:#fff; text-decoration:none; letter-spacing:2px; }
+.dot { color:var(--accent); }
+.nav-links a { font-family:'Fira Code',monospace; color:rgba(255,255,255,.4); text-decoration:none; margin-left:30px; font-size:.75rem; letter-spacing:1px; transition:.3s; display:inline-block; position:relative; padding-bottom:4px; }
+.nav-links a:hover { color:var(--accent); }
+.nav-links a.active { color:var(--accent); }
+.nav-links a.active::after { content:''; position:absolute; bottom:-2px; left:0; width:100%; height:1.5px; background:var(--accent); box-shadow:0 0 8px var(--accent),0 0 16px rgba(127,255,212,.4); border-radius:2px; animation:activeGlow 2s infinite alternate; }
+@keyframes activeGlow { from{box-shadow:0 0 6px var(--accent);opacity:.8;} to{box-shadow:0 0 14px var(--accent),0 0 28px rgba(127,255,212,.4);opacity:1;} }
+
+/* Navbar stats */
+.nav-stats { display:flex; align-items:center; gap:10px; margin-left:24px; padding:5px 14px; background:rgba(127,255,212,.04); border:1px solid rgba(127,255,212,.1); border-radius:100px; }
+.nav-stat-item { font-family:'Fira Code',monospace; font-size:.65rem; letter-spacing:2px; color:rgba(127,255,212,.65); }
+.nav-stat-divider { color:rgba(127,255,212,.2); font-size:.6rem; }
+.nav-timer { color:rgba(127,255,212,.45); }
+@media(max-width:992px){.nav-stats{display:none;}}
+
+/* Header */
+.header-section { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:80px 30px 40px; gap:50px; }
+.header-content-left { flex:1.2; }
+.header-image-right  { flex:0.8; display:flex; justify-content:flex-end; }
+
+.time-greeting { font-size:.82rem; color:var(--accent); margin:5px 0 0; letter-spacing:1px; text-transform:uppercase; opacity:.9; font-family:'Fira Code',monospace; text-shadow:0 0 10px var(--accent); }
+
+h1 { font-family:'Orbitron',sans-serif; font-size:3.2rem; margin-top:20px; font-weight:700; line-height:1.15; min-height:120px; letter-spacing:-.5px; }
+.text-neon { background:linear-gradient(to right,#fff,var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:neonFlicker 6s infinite; }
+@keyframes neonFlicker {
+    0%,19%,21%,23%,25%,54%,56%,100% { text-shadow:0 0 10px rgba(127,255,212,.5),0 0 30px rgba(127,255,212,.2); filter:brightness(1); }
+    20%,24%,55% { text-shadow:none; filter:brightness(.8); }
+}
+
+.user-badge { font-family:'Fira Code',monospace; font-size:.6rem; letter-spacing:4px; text-transform:uppercase; background:rgba(127,255,212,.04); border:1px solid var(--border); padding:8px 20px; border-radius:100px; color:var(--accent); display:inline-block; }
+.terminal-flicker { animation:flicker 4s linear infinite; }
+@keyframes flicker { 0%,19.999%,22%,62.999%,64%,64.999%,70%,100%{opacity:1;} 20%,21.999%,63%,63.999%,65%,69.999%{opacity:.4;} }
+
+.terminal-info { font-family:'Fira Code',monospace; font-size:.85rem; color:var(--accent); margin-top:15px; letter-spacing:2px; opacity:.8; text-shadow:0 0 10px rgba(127,255,212,.4); }
+
+/* Radar rings */
+.radar-wrap { position:relative; display:flex; justify-content:center; align-items:center; }
+.radar-ring { position:absolute; border-radius:50%; border:1px solid rgba(127,255,212,.25); animation:radarPing 3s ease-out infinite; pointer-events:none; }
+.ring-1{width:320px;height:320px;animation-delay:0s;} .ring-2{width:420px;height:420px;animation-delay:1s;} .ring-3{width:520px;height:520px;animation-delay:2s;}
+@keyframes radarPing { 0%{transform:scale(.85);opacity:.6;} 80%{opacity:.1;} 100%{transform:scale(1.15);opacity:0;} }
+
+/* Profile image */
+.image-portal {
+    position:relative; width:100%; max-width:340px; height:440px;
+    border-radius:200px 200px 30px 30px; overflow:hidden; border:none;
+    box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 40px rgba(127,255,212,.08);
+    animation:floatImage 6s infinite ease-in-out; z-index:2;
+}
+.image-portal img { width:100%; height:100%; object-fit:cover; }
+.image-portal::after  { content:''; position:absolute; inset:0; background:linear-gradient(to top,var(--bg-dark),transparent 40%); }
+.image-portal::before {
+    content:''; position:absolute; inset:-2px; border-radius:202px 202px 32px 32px;
+    background:conic-gradient(from var(--fa,0deg),#7fffd4,#4caf8a,#b2ffd8,#7fffd4,transparent 60%,transparent 100%);
+    z-index:-1; animation:frameRotate 4s linear infinite;
+}
+@keyframes frameRotate { from{--fa:0deg;} to{--fa:360deg;} }
+@property --fa { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes floatImage { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
+
+/* Glitch layers */
+.img-glitch-layer { position:absolute; inset:0; background-size:cover; background-position:center; border-radius:inherit; opacity:0; pointer-events:none; mix-blend-mode:screen; }
+.image-portal.glitching .img-glitch-layer { opacity:.6; }
+.image-portal.glitching .glitch-r { transform:translate(-4px,2px); opacity:.5; filter:hue-rotate(0deg) saturate(3); clip-path:polygon(0 15%,100% 15%,100% 35%,0 35%); }
+.image-portal.glitching .glitch-g { transform:translate(4px,-2px); opacity:.5; filter:hue-rotate(140deg) saturate(3); clip-path:polygon(0 55%,100% 55%,100% 75%,0 75%); }
+
+/* Progress */
+.progress-wrapper { max-width:450px; margin:35px 0 0; }
+.progress-info { display:flex; justify-content:space-between; font-size:.7rem; font-family:'Fira Code',monospace; color:rgba(255,255,255,.4); margin-bottom:10px; letter-spacing:1px; }
+.progress-container { background:rgba(255,255,255,.03); height:6px; border-radius:100px; overflow:hidden; border:1px solid var(--border); }
+.progress-bar { height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-alt)); box-shadow:0 0 15px var(--accent); transition:width 2s cubic-bezier(.34,1.56,.64,1); }
+.pulse-border { animation:borderPulse 2s infinite alternate; }
+@keyframes borderPulse { from{border-color:rgba(127,255,212,.2);box-shadow:0 0 10px rgba(127,255,212,.2);} to{border-color:rgba(127,255,212,.8);box-shadow:0 0 20px rgba(127,255,212,.5);} }
+.progress-stats { display:flex; justify-content:space-between; font-family:'Fira Code',monospace; font-size:.65rem; color:rgba(255,255,255,.3); margin-top:8px; letter-spacing:1px; }
+.stat-num { color:var(--accent); font-weight:700; text-shadow:0 0 8px var(--accent); }
+
+/* Module counter */
+.module-counter { display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:8px 18px; background:rgba(127,255,212,.04); border:1px solid rgba(127,255,212,.12); border-radius:100px; }
+.counter-value { font-family:'Fira Code',monospace; font-size:1.1rem; font-weight:700; color:var(--accent); text-shadow:0 0 12px rgba(127,255,212,.5); min-width:24px; text-align:center; }
+.counter-label { font-family:'Fira Code',monospace; font-size:.58rem; letter-spacing:3px; color:rgba(127,255,212,.4); text-transform:uppercase; }
+.counter-dot   { width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); animation:blinkCursor 1.2s infinite; }
+
+/* Section divider */
+.section-divider { position:relative; max-width:1200px; margin:0 auto; padding:0 25px; height:40px; display:flex; align-items:center; gap:16px; overflow:hidden; }
+.divider-line  { flex:1; height:1px; background:linear-gradient(to right,transparent,rgba(127,255,212,.25),transparent); }
+.divider-label { font-family:'Fira Code',monospace; font-size:.6rem; letter-spacing:4px; color:rgba(127,255,212,.35); white-space:nowrap; }
+.divider-scan  { position:absolute; top:0; left:-60%; width:60%; height:100%; background:linear-gradient(to right,transparent,rgba(127,255,212,.1),transparent); animation:scanSweep 3s ease-in-out infinite; pointer-events:none; }
+@keyframes scanSweep { 0%{left:-60%;opacity:0;} 10%,90%{opacity:1;} 100%{left:160%;opacity:0;} }
+
+/* Card grid */
+.container { max-width:1200px; margin:0 auto; padding:60px 25px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px; }
+
+/* Card entry animation */
+.card-hidden  { opacity:0; transform:translateY(40px); transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.56,.64,1); }
+.card-visible { opacity:1; transform:translateY(0); }
+
+/* Jobsheet cards */
+.jobsheet-card { position:relative; background:var(--card-bg); border:1px solid var(--border); border-radius:24px; padding:35px; text-decoration:none; color:white; display:flex; align-items:center; gap:25px; overflow:hidden; backdrop-filter:blur(15px); transition:border-color .3s,box-shadow .3s,transform .3s; }
+.jobsheet-card:hover { border-color:var(--accent); box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 30px rgba(127,255,212,.08); }
+
+/* Status badges */
+.status-badge { position:absolute; top:14px; right:50px; font-family:'Fira Code',monospace; font-size:.52rem; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border-radius:100px; font-weight:500; }
+.badge-done     { background:rgba(127,255,212,.1); color:#7fffd4; border:1px solid rgba(127,255,212,.3); }
+.badge-progress { background:rgba(255,213,79,.1);  color:#ffd54f; border:1px solid rgba(255,213,79,.3); }
+.badge-locked   { background:rgba(255,255,255,.04); color:rgba(255,255,255,.3); border:1px solid rgba(255,255,255,.08); }
+
+/* Card number */
+.card-number { position:absolute; top:16px; right:16px; font-family:'Fira Code',monospace; font-size:.62rem; font-weight:700; letter-spacing:2px; color:rgba(127,255,212,.2); transition:.3s; user-select:none; }
+.jobsheet-card:hover .card-number { color:rgba(127,255,212,.6); text-shadow:0 0 10px var(--accent); }
+
+.card-icon { width:55px; height:55px; background:rgba(255,255,255,.03); border-radius:18px; display:flex; justify-content:center; align-items:center; font-size:1.5rem; color:var(--accent); border:1px solid var(--border); transition:.4s; flex-shrink:0; }
+.jobsheet-card:hover .card-icon { background:var(--accent); color:#000; transform:rotate(-10deg); }
+
+.card-info h3 { font-family:'Orbitron',sans-serif; font-weight:700; font-size:.9rem; letter-spacing:.5px; margin-bottom:6px; }
+.card-info p  { font-size:.8rem; color:rgba(255,255,255,.38); line-height:1.5; font-weight:300; }
+
+.card-arrow { margin-left:auto; color:var(--accent); opacity:.3; transition:.3s; flex-shrink:0; }
+.jobsheet-card:hover .card-arrow { opacity:1; transform:translate(5px,-5px); }
+
+/* Sparks */
+.spark-container { position:absolute; inset:0; pointer-events:none; overflow:hidden; border-radius:24px; }
+.spark { position:absolute; width:3px; height:3px; background:var(--accent); border-radius:50%; box-shadow:0 0 6px var(--accent),0 0 12px rgba(127,255,212,.6); animation:sparkFly .7s ease-out forwards; pointer-events:none; }
+@keyframes sparkFly { 0%{transform:translate(0,0) scale(1);opacity:1;} 100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0;} }
+
+/* Animated border trace on hover */
+.jobsheet-card::before {
+    content:''; position:absolute; inset:0; border-radius:24px; padding:1.5px;
+    background:conic-gradient(from var(--ba,0deg),transparent 0deg,var(--accent) 60deg,rgba(76,175,138,.8) 120deg,transparent 180deg,transparent 360deg);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .3s;
+}
+.jobsheet-card:hover::before { opacity:1; animation:borderTrace 1.8s linear infinite; }
+@keyframes borderTrace { from{--ba:0deg;} to{--ba:360deg;} }
+@property --ba { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+
+/* Shimmer */
+.jobsheet-card::after { content:''; position:absolute; top:0; left:-80%; width:60%; height:100%; background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.03) 50%,transparent 60%); border-radius:24px; transform:skewX(-15deg); animation:cardShimmer 5s ease-in-out infinite; pointer-events:none; }
+@keyframes cardShimmer { 0%{left:-80%;opacity:0;} 10%,90%{opacity:1;} 100%{left:140%;opacity:0;} }
+.jobsheet-card:nth-child(2)::after{animation-delay:.8s;} .jobsheet-card:nth-child(3)::after{animation-delay:1.6s;}
+.jobsheet-card:nth-child(4)::after{animation-delay:2.4s;} .jobsheet-card:nth-child(5)::after{animation-delay:3.2s;} .jobsheet-card:nth-child(6)::after{animation-delay:4s;}
+
+/* Boot sequence */
+.boot-overlay { position:fixed; inset:0; background:#070d0b; z-index:99996; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; padding:40px; transition:opacity .6s ease,transform .6s ease; }
+.boot-overlay.boot-done { opacity:0; pointer-events:none; transform:translateY(-8px); }
+.boot-line { font-family:'Fira Code',monospace; font-size:.75rem; letter-spacing:2px; color:rgba(127,255,212,.65); opacity:0; transform:translateX(-10px); transition:opacity .3s,transform .3s; width:100%; max-width:500px; }
+.boot-line.show { opacity:1; transform:translateX(0); }
+.boot-line .prefix { color:rgba(127,255,212,.35); margin-right:8px; }
+.boot-line.success { color:#7fffd4; } .boot-line.warning { color:#ffd580; }
+.boot-cursor { display:inline-block; width:8px; height:14px; background:var(--accent); vertical-align:middle; margin-left:4px; animation:blinkCursor .7s infinite; }
+@keyframes blinkCursor { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+/* Tooltip */
+.card-tooltip { position:fixed; background:rgba(7,13,11,.92); border:1px solid rgba(127,255,212,.2); border-radius:8px; padding:6px 12px; font-family:'Fira Code',monospace; font-size:.6rem; letter-spacing:2px; color:rgba(127,255,212,.8); pointer-events:none; z-index:9000; opacity:0; transform:translateY(6px); transition:opacity .2s,transform .2s; white-space:nowrap; backdrop-filter:blur(10px); text-transform:uppercase; }
+.card-tooltip.tooltip-show { opacity:1; transform:translateY(0); }
+.card-tooltip::before { content:'→ '; color:var(--accent); }
+
+/* Global */
+.mouse-glow { position:fixed; width:500px; height:500px; background:radial-gradient(circle,rgba(127,255,212,.04) 0%,transparent 70%); border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); z-index:-1; }
+.particles  { position:fixed; inset:0; z-index:-1; pointer-events:none; }
+.p-circle   { position:absolute; width:3px; height:3px; background:var(--accent); border-radius:50%; opacity:.12; animation:floatP 10s infinite alternate ease-in-out; }
+@keyframes floatP { from{transform:translateY(0) scale(1);} to{transform:translateY(-40px) scale(1.5);} }
+.dud { color:var(--accent); opacity:.6; }
+
+/* Scroll progress */
+.scroll-progress { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(to right,var(--accent),var(--accent-alt)); box-shadow:0 0 8px var(--accent); z-index:99999; }
+
+/* Ripple */
+.ripple-container { position:fixed; inset:0; pointer-events:none; z-index:9990; }
+.ripple-wave { position:absolute; width:6px; height:6px; border-radius:50%; transform:translate(-50%,-50%) scale(0); border:1.5px solid rgba(127,255,212,.5); animation:rippleExpand .8s ease-out forwards; pointer-events:none; }
+@keyframes rippleExpand { 0%{transform:translate(-50%,-50%) scale(0);opacity:.8;} 100%{transform:translate(-50%,-50%) scale(25);opacity:0;} }
+
+/* Card shine */
+.card-shine { position:absolute; inset:0; border-radius:24px; pointer-events:none; opacity:0; transition:opacity .3s; z-index:1; }
+.jobsheet-card:hover .card-shine { opacity:1; }
+
+/* Holographic overlay */
+.card-holo { position:absolute; inset:0; border-radius:24px; opacity:0; pointer-events:none; transition:opacity .3s; mix-blend-mode:overlay; background:linear-gradient(115deg,transparent 20%,rgba(0,255,180,.12) 30%,rgba(0,220,255,.10) 40%,rgba(100,255,150,.10) 50%,rgba(0,180,255,.10) 60%,transparent 70%); }
+.jobsheet-card.holo-active .card-holo { opacity:1; }
+.jobsheet-card.holo-active { background-image:radial-gradient(circle at var(--holo-x,50%) var(--holo-y,50%),rgba(127,255,212,.05) 0%,transparent 60%); }
+
+/* Glow trail after hover */
+.jobsheet-card.glow-trail { box-shadow:0 0 40px rgba(127,255,212,.2),0 20px 40px rgba(0,0,0,.3)!important; border-color:rgba(127,255,212,.35)!important; transition:box-shadow .6s ease,border-color .6s ease!important; }
+
+/* Card stack depth shadow */
+.card-stack-shadow { position:absolute; inset:0; border-radius:24px; pointer-events:none; z-index:-1; opacity:0; transition:opacity .3s; }
+.card-stack-shadow::before,.card-stack-shadow::after { content:''; position:absolute; inset:0; border-radius:24px; border:1px solid rgba(127,255,212,.08); background:rgba(127,255,212,.01); }
+.card-stack-shadow::before { transform:translate(6px,8px); opacity:.5; }
+.card-stack-shadow::after  { transform:translate(12px,16px); opacity:.25; }
+.jobsheet-card:hover .card-stack-shadow { opacity:1; }
+
+/* Typewriter cursor */
+#neonText::after { content:'|'; animation:blinkCursor .7s infinite; color:var(--accent); font-weight:300; margin-left:2px; }
+
+/* Back to top */
+.back-to-top { position:fixed; bottom:35px; right:35px; width:44px; height:44px; border-radius:50%; background:rgba(127,255,212,.06); border:1px solid rgba(127,255,212,.2); color:var(--accent); font-size:1.2rem; display:flex; justify-content:center; align-items:center; z-index:500; opacity:0; transform:translateY(20px); pointer-events:none; transition:opacity .4s,transform .4s,background .3s,box-shadow .3s; }
+.back-to-top.show { opacity:1; transform:translateY(0); pointer-events:auto; }
+.back-to-top:hover { background:rgba(127,255,212,.15); box-shadow:0 0 20px rgba(127,255,212,.3); }
+
+/* Footer */
+.futuristic-footer { text-align:center; padding:40px; color:rgba(255,255,255,.25); font-size:.65rem; border-top:1px solid var(--border); font-family:'Fira Code',monospace; letter-spacing:2px; }
+.glitch-text { display:inline-block; transition:.1s; }
+
+/* Responsive */
+@media(max-width:992px) {
+    .header-section { flex-direction:column; text-align:center; padding-top:40px; }
+    .header-content-left { text-align:center; order:2; }
+    .header-image-right  { order:1; justify-content:center; width:100%; }
+    .progress-wrapper    { margin:35px auto; }
+    h1 { font-size:2.5rem; min-height:100px; }
+    .image-portal { max-width:280px; height:360px; }
+    .time-greeting,.terminal-info { text-align:center; }
+    .module-counter { margin:18px auto 0; }
+    .radar-ring { display:none; }
+}
+
+/* Iris wipe exit */
+.iris-svg { position:fixed; inset:0; width:100vw; height:100vh; z-index:999999; display:none; pointer-events:none; }
+
+/* Venetian blinds enter */
+.venetian-wrap { position:fixed; inset:0; z-index:99990; pointer-events:none; overflow:hidden; }
+.vblind { position:absolute; left:0; width:100%; background:#070d0b; transform-origin:top center; transform:scaleY(1); transition:transform .6s cubic-bezier(.77,0,.175,1); will-change:transform; }
+.vblind.vblind-open { transform:scaleY(0); }

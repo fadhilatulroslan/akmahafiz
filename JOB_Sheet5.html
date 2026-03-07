@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Store - Customer Registration</title>
+
+<style>
+
+/* ===== Reset ===== */
+html, body, header, footer, nav, section, div, h1, h2, h3,
+ul, li, p, table, tr, td, form, input, label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+/* ===== Body ===== */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-image: url("stucco.png");
+    line-height: 1.4;
+}
+
+/* ===== Header Top Bar ===== */
+#topBar {
+     background-color: #222222;
+    font-size: 0.9em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    padding-right: 1em;
+}
+
+#topBar a {
+    color: #999;
+    margin-left: 2em;
+    text-decoration: none;
+}
+
+/* ===== Main Header ===== */
+header {
+    width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 4em;
+    font-weight: bold;
+    padding: 0.3em 0;
+}
+
+/* ===== Navigation ===== */
+nav {
+    background-color: #f8f8f8;
+    border: 1pt solid #e7e7e7;
+    height: 3em;
+    line-height: 3em;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #777;
+    margin-left: 1em;
+    margin-right: 2em;
+}
+
+/* ===== Main Container ===== */
+main {
+    width: 880px;
+    margin: 1em auto;
+    background-color: #fff;
+    padding: 15px;
+    border: 1pt solid #e7e7e7;
+}
+
+/* ===== Section Headings ===== */
+h2 {
+    font-size: 1.75em;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 1.25em;
+    border-bottom: 1pt solid #e7e7e7;
+    margin-top: 1em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0.3em;
+}
+
+/* ===== Table ===== */
+table {
+    width: 60%;
+}
+
+td {
+    padding: 5px 10px 5px 0;
+}
+
+/* ===== Labels ===== */
+label {
+    font-weight: bold;
+}
+
+/* ===== Inputs ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select {
+    width: 200px;
+    padding: 3px;
+}
+
+input[type="range"] {
+    width: 60%;
+}
+
+/* ===== Button ===== */
+.fancyBtn {
+    background-color: #bddbfa;
+    border: 1pt solid #e7e7e7;
+    padding: 8px 15px;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+/* ===== Footer ===== */
+footer {
+    clear: left;
+    width: 900px;
+    height: 3em;
+    margin: 1em auto 0 auto;
+    border: 1pt solid #e7e7e7;
+    background-color: #222;
+    color: #999;
+    font-size: 0.9em;
+    text-align: center;
+    line-height: 3em;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="topBar">
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+        <a href="#">Contact</a>
+    </div>
+
+<header>
+    <h1>My Product Store</h1>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Art Works</a></li>
+            <li><a href="#">Artists</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<h2>Customer Registration</h2>
+
+<h3>1. User Info</h3>
+<table>
+<tr>
+<td><label for="first name">First Name</label></td>
+<td><input type="text" id="fist name"></td>
+<td><label for="last name">Last Name</label></td>
+<td><input type="text" id="last name"></td>
+</tr>
+
+<tr>
+<td><label>Email</label></td>
+<td colspan="3"><input type="email" placeholder="format for email is xxx@yyy.zzz"></td>
+</tr>
+
+<tr>
+<td><label>Password</label></td>
+<td><input type="password" placeholder="at least 8 characters"></td>
+<td><label>Password Repeat</label></td>
+<td><input type="password" placeholder="at least 8 characters"></td>
+</tr>
+</table>
+
+<h3>2. Location</h3>
+<table>
+<tr>
+<td><label>Address</label></td>
+<td colspan="3"><input type="text" style="width:400px;"></td>
+</tr>
+
+<tr>
+<td><label>City</label></td>
+<td><input type="text"></td>
+<td><label>State</label></td>
+<td><input type="text"></td>
+</tr>
+
+<tr>
+<td><label>Zip</label></td>
+<td><input type="text"></td>
+<td><label>Country</label></td>
+<td>
+<select>
+<option>Canada</option>
+<option>USA</option>
+<option>UK</option>
+</select>
+</td>
+</tr>
+</table>
+
+<h3>3. Personal Details</h3>
+<table>
+<tr>
+<td><label>Birth Day</label></td>
+<td><input type="date"></td>
+<td><label>Favorite Color</label></td>
+<td><input type="color"></td>
+</tr>
+
+<tr>
+<td><label>Interest in Art</label></td>
+<td colspan="3">
+Unsatisfied 
+<input type="range"> 
+Love it!
+</td>
+</tr>
+</table>
+
+<h3>4. All Done</h3>
+<p>
+<input type="checkbox"> I agree to the <a href="#">Terms of the Site</a>
+</p>
+
+<button class="fancyBtn">✔ Sign me up!</button>
+
+</main>
+
+<footer>
+All images are copyright to their owners. This is just a hypothetical site © 2026 Art Store
+</footer>
+
+</body>
+</html>
