@@ -1,0 +1,99 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #e5e5f7;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-family: 'Lobster', cursive;
+    margin: 0;
+    font-size: 24px;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+main {
+    max-width: 850px;
+    margin: 15px auto;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    height: calc(100vh - 100px); 
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+#featured {
+    position: relative;
+    flex: 1; 
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    max-height: 450px; 
+}
+
+#featured img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#featured figcaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    color: black;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    opacity: 0; 
+    transition: opacity 1.5s; 
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+#thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    height: 100px;
+    margin-top: auto;
+}
+
+#thumbnails img {
+    width: 18%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    background: white;
+    padding: 2px;
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+#thumbnails img:hover {
+    border-color: #3f51b5;
+    transform: scale(1.05);
+}
