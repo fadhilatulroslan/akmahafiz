@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <script src="https://kit.fontawesome.com/b9052ad8b9.js" crossorigin="anonymous"></script>
+    <title>Akma's Market</title>
+    <link href="addtocart.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Tambah Akma's Market di sini -->
+    <h1 class="tajuk">Akma's Market</h1>
+
+    <div class="utama">
+        <div class="pertama">
+            <table>
+                <tr>
+                    <th>Barang</th>
+                    <th>Harga</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>maggi kari</td>
+                    <td>RM5.00</td>
+                    <td><button class="beli" onclick="tambahData({nama: 'maggi kari', harga: 5})"><i class="fa-solid fa-basket-shopping"></i> Beli</button></td>
+                </tr>
+                <tr>
+                    <td>maggi tomyam</td>
+                    <td>RM5.00</td>
+                    <td><button class="beli" onclick="tambahData({nama: 'maggi tomyam', harga: 5})"><i class="fa-solid fa-basket-shopping"></i> Beli</button></td>
+                </tr>
+                <tr>
+                    <td>maggi sup</td>
+                    <td>RM4.50</td>
+                    <td><button class="beli" onclick="tambahData({nama: 'maggi sup', harga: 4.50})"><i class="fa-solid fa-basket-shopping"></i> Beli</button></td>
+                </tr>
+                <tr>
+                    <td>maggi goreng</td>
+                    <td>RM4.70</td>
+                    <td><button class="beli" onclick="tambahData({nama: 'maggi goreng', harga: 4.70})"><i class="fa-solid fa-basket-shopping"></i> Beli</button></td>
+                </tr>
+                <tr>
+                    <td>maggi lontong</td>
+                    <td>RM5.00</td>
+                    <td><button class="beli" onclick="tambahData({nama: 'maggi lontong', harga: 5})"><i class="fa-solid fa-basket-shopping"></i> Beli</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="kedua" id="troli">
+            <!-- Akan diisi oleh JavaScript -->
+        </div>
+    </div>
+    <script src="addtocart.js"></script>
+</body>
+</html>
