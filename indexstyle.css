@@ -24,8 +24,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-/* ===== CUSTOM CROSSHAIR CURSOR ===== */
 .cursor-crosshair {
     position: fixed;
     width: 20px;
@@ -68,7 +66,6 @@ body {
     display: none;
 }
 
-/* Hover state — crosshair glows bigger */
 .cursor-crosshair.cursor-active::before {
     width: 30px;
     box-shadow: 0 0 12px var(--pink), 0 0 24px rgba(251,194,235,0.4);
@@ -78,7 +75,6 @@ body {
     box-shadow: 0 0 12px var(--pink), 0 0 24px rgba(251,194,235,0.4);
 }
 
-/* ===== PAGE GLITCH ===== */
 .page-glitch {
     position: fixed;
     top: 0; left: 0;
@@ -103,7 +99,6 @@ body {
     100% { opacity: 0; transform: translateX(0); }
 }
 
-/* ===== 3D FLOATING SHAPES ===== */
 .floating-shapes {
     position: fixed;
     width: 100%; height: 100%;
@@ -156,8 +151,6 @@ body {
     0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
     100% { transform: translate(30px, -50px) rotate(180deg) scale(1.2); }
 }
-
-/* ===== GRID BACKGROUND ===== */
 .grid-background {
     position: fixed;
     top: 0; left: 0;
@@ -169,8 +162,6 @@ body {
     z-index: 0;
     pointer-events: none;
 }
-
-/* ===== FLOATING ICONS ===== */
 .floating-icons {
     position: fixed;
     width: 100%; height: 100%;
@@ -199,7 +190,6 @@ body {
     100% { transform: translateY(-30px) rotate(10deg); }
 }
 
-/* ===== LOADER ===== */
 .loader-wrapper {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -215,17 +205,44 @@ body {
     transform: translateY(-100%);
 }
 
-.loader-content { text-align: center; width: 300px; }
-
-.loader-logo {
-    font-size: 1.5rem;
-    letter-spacing: 10px;
-    color: var(--pink);
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 0 0 10px var(--pink);
-    font-family: 'Orbitron', sans-serif;
+.loader-ikml-wrap {
+    text-align: center; 
+    width: 280px; /* DARI 340px → 280px */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 16px;
 }
+
+.loader-ikml-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem; /* DARI 5rem → 2.8rem */
+    font-weight: 900;
+    letter-spacing: 6px; /* DARI 14px → 6px */
+    background: linear-gradient(135deg, var(--pink), #fff 50%, var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(8px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23,1,0.32,1), filter 0.8s ease;
+}
+.loader-ikml-logo.show {
+    opacity: 1; transform: scale(1); filter: blur(0);
+}
+.loader-ikml-logo.shrink {
+    opacity: 0; transform: scale(0.3) translateY(-50px);
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.55,0,1,0.45);
+}
+.loader-ikml-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 5px;
+    text-transform: uppercase; color: rgba(255,255,255,0.3);
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.loader-ikml-sub.show   { opacity: 1; transform: translateY(0); }
+.loader-ikml-sub.shrink { opacity: 0; }
 
 .loader-bar-container {
     width: 100%; height: 2px;
@@ -235,8 +252,8 @@ body {
 
 .loader-bar {
     width: 0%; height: 100%;
-    background: var(--pink);
-    box-shadow: 0 0 15px var(--pink);
+    background: linear-gradient(to right, var(--pink), var(--purple)) !important;
+    box-shadow: 0 0 15px var(--pink) !important;
     transition: 0.1s;
 }
 
@@ -247,7 +264,6 @@ body {
     font-family: 'Space Mono', monospace;
 }
 
-/* ===== CURSOR AURA ===== */
 .cursor-aura {
     position: fixed;
     width: 450px; height: 450px;
@@ -259,7 +275,6 @@ body {
     transition: left 0.12s, top 0.12s;
 }
 
-/* ===== PARTICLES ===== */
 .particle {
     position: absolute;
     background: var(--pink);
@@ -274,7 +289,6 @@ body {
     to   { transform: translateY(-40px); }
 }
 
-/* ===== EXPLOSION PARTICLES ===== */
 .explosion-container {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -294,7 +308,6 @@ body {
     100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
 }
 
-/* ===== ABSTRACT SHAPES ===== */
 .abstract-shape {
     position: absolute;
     border: 1px solid rgba(255,255,255,0.05);
@@ -319,7 +332,6 @@ body {
     to   { transform: rotate(360deg); }
 }
 
-/* ===== TOP BAR ===== */
 .top-bar {
     position: fixed; top: 30px; width: 100%;
     display: flex; justify-content: space-between; align-items: center;
@@ -336,7 +348,6 @@ body {
     color: rgba(251,194,235,0.5);
 }
 
-/* ===== MAIN CARD ===== */
 .main-container {
     width: 100%;
     display: flex; justify-content: center; align-items: center;
@@ -358,7 +369,6 @@ body {
     overflow: hidden;
 }
 
-/* ===== CORNER DECORATIONS ===== */
 .corner-deco {
     position: absolute;
     width: 18px; height: 18px;
@@ -387,7 +397,6 @@ body {
     border-radius: 0 0 4px 0;
 }
 
-/* Parallax layers */
 .parallax-layer {
     position: absolute;
     border-radius: 50%;
@@ -407,7 +416,6 @@ body {
     background: radial-gradient(circle, rgba(161,140,209,0.08), transparent 70%);
 }
 
-/* ===== NEON BORDER PULSE ===== */
 .pulse-border {
     animation: borderPulse 3s infinite alternate;
 }
@@ -437,7 +445,6 @@ body {
 
 .portal-card:hover .card-shine { left: 150%; }
 
-/* ===== TIME GREETING ===== */
 .time-greeting {
     font-size: 0.82rem;
     color: var(--pink);
@@ -463,7 +470,6 @@ body {
     font-family: 'Space Mono', monospace;
 }
 
-/* ===== HEADING ===== */
 h1 {
     font-size: 2.9rem;
     line-height: 1.15;
@@ -583,7 +589,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* ===== MUSIC ===== */
 .music-container {
     position: fixed; bottom: 30px; left: 30px;
     z-index: 100; display: flex; align-items: center; gap: 10px;
@@ -670,7 +675,6 @@ h1 {
     100% { opacity: 0.3; height: 40px; }
 }
 
-/* ===== MODAL ===== */
 .modal-overlay {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -778,7 +782,6 @@ h1 {
 }
 .close-modal:hover { opacity: 1; color: var(--pink); }
 
-/* ===== FOOTER ===== */
 .footer {
     position: absolute; bottom: 2rem;
     width: 100%; text-align: center;
@@ -796,7 +799,6 @@ h1 {
     font-family: 'Space Mono', monospace;
 }
 
-/* ===== SOUND WAVE ===== */
 .sound-wave {
     display: flex; justify-content: center; align-items: center;
     gap: 3px; height: 20px; margin-top: 10px;
@@ -821,18 +823,12 @@ h1 {
     50%       { height: 15px; }
 }
 
-/* ============================================
-   INDEX PAGE UPGRADES
-   ============================================ */
-
-/* ===== IRIS WIPE EXIT ===== */
 .iris-svg {
     position: fixed; inset: 0;
     width: 100vw; height: 100vh;
     z-index: 99999; display: none; pointer-events: none;
 }
 
-/* ===== SPLIT REVEAL ENTER ===== */
 .split-reveal {
     position: fixed; inset: 0;
     z-index: 99997; display: none; pointer-events: none;
@@ -842,7 +838,6 @@ h1 {
     background: var(--bg-dark);
 }
 
-/* ===== CURSOR TRAIL ===== */
 .cursor-trail-container {
     position: fixed; inset: 0;
     pointer-events: none; z-index: 99998;
@@ -862,45 +857,6 @@ h1 {
     100% { opacity: 0;   transform: translate(-50%,-50%) scale(0.1); }
 }
 
-/* ===== IKML LOGO LOADER ===== */
-.loader-ikml-wrap {
-    text-align: center; width: 340px;
-    display: flex; flex-direction: column; align-items: center; gap: 16px;
-}
-.loader-ikml-logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 5rem; font-weight: 900;
-    letter-spacing: 14px;
-    background: linear-gradient(135deg, var(--pink), #fff 50%, var(--purple));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    opacity: 0; transform: scale(0.85);
-    filter: blur(8px);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23,1,0.32,1), filter 0.8s ease;
-}
-.loader-ikml-logo.show {
-    opacity: 1; transform: scale(1); filter: blur(0);
-}
-.loader-ikml-logo.shrink {
-    opacity: 0; transform: scale(0.3) translateY(-50px);
-    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.55,0,1,0.45);
-}
-.loader-ikml-sub {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem; letter-spacing: 5px;
-    text-transform: uppercase; color: rgba(255,255,255,0.3);
-    opacity: 0; transform: translateY(10px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.loader-ikml-sub.show   { opacity: 1; transform: translateY(0); }
-.loader-ikml-sub.shrink { opacity: 0; }
-
-/* Keep existing loader bar styles, just enhance glow */
-.loader-bar {
-    background: linear-gradient(to right, var(--pink), var(--purple)) !important;
-    box-shadow: 0 0 15px var(--pink) !important;
-}
-
-/* ===== UPGRADED FLOATING SHAPES ===== */
 .shape-hex {
     width: 80px; height: 80px;
     top: 10%; right: 5%;
@@ -934,7 +890,6 @@ h1 {
     animation-duration: 20s !important;
 }
 
-/* ===== BTN PRIMARY UPGRADE — animated gradient border ===== */
 .btn-primary {
     background: white; color: black;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -959,7 +914,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* ===== MODAL UPGRADES ===== */
 .modal-sub {
     font-family: 'Space Mono', monospace;
     font-size: 0.62rem; letter-spacing: 2px;
@@ -967,7 +921,6 @@ h1 {
     margin-top: 6px;
 }
 
-/* Akma modal card — rose gold */
 .akma-modal-card {
     border-color: rgba(244,167,185,0.08) !important;
     transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), border-color 0.4s, box-shadow 0.4s !important;
@@ -977,7 +930,6 @@ h1 {
     box-shadow: 0 20px 50px rgba(244,167,185,0.18), 0 0 0 1px rgba(244,167,185,0.12) !important;
 }
 
-/* Hafiz modal card — green */
 .hafiz-modal-card {
     border-color: rgba(127,255,212,0.06) !important;
     transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), border-color 0.4s, box-shadow 0.4s !important;
@@ -987,7 +939,6 @@ h1 {
     box-shadow: 0 20px 50px rgba(127,255,212,0.15), 0 0 0 1px rgba(127,255,212,0.1) !important;
 }
 
-/* Animated border trace on modal cards */
 .modal-card-border-trace {
     position: absolute; inset: 0; border-radius: 30px; padding: 1.5px;
     background: conic-gradient(from var(--mba,0deg), transparent 0deg, rgba(255,255,255,0.4) 60deg, transparent 180deg);
@@ -1002,7 +953,6 @@ h1 {
 @keyframes mbaRot { from{--mba:0deg;} to{--mba:360deg;} }
 @property --mba { syntax:'<angle>'; inherits:false; initial-value:0deg; }
 
-/* Avatar ring on modal cards */
 .modal-avatar-wrap {
     position: relative; width: 90px; height: 90px;
     margin: 0 auto 18px;
@@ -1023,7 +973,6 @@ h1 {
     margin: 0 !important;
 }
 
-/* Card glow colours */
 .card-glow {
     position: absolute; inset: 0;
     border-radius: 30px;
@@ -1037,20 +986,17 @@ h1 {
 .green-glow { background: rgba(127,255,212,0.55) !important; }
 .option-card:hover .card-glow { opacity: 0.14 !important; }
 
-/* Modal card subtext */
 .modal-card-sub {
     font-family: 'Space Mono', monospace;
     font-size: 0.58rem; letter-spacing: 1px;
     color: rgba(255,255,255,0.25); margin-bottom: 14px;
 }
 
-/* Enter btn theming */
 .akma-enter  { color: rgba(244,167,185,0.7) !important; }
 .hafiz-enter { color: rgba(127,255,212,0.6) !important; }
 .akma-modal-card:hover  .akma-enter  { color: rgba(244,167,185,1) !important; }
 .hafiz-modal-card:hover .hafiz-enter { color: rgba(127,255,212,1) !important; }
 
-/* Modal burst particles */
 .modal-burst-cont { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: 30px; }
 .modal-burst-p {
     position: absolute; border-radius: 50%;
@@ -1061,7 +1007,6 @@ h1 {
     100% { transform: translate(var(--bx),var(--by)) scale(0); opacity: 0; }
 }
 
-/* ===== GLITCH FOOTER upgrade ===== */
 .footer span {
     transition: color 0.05s;
 }
