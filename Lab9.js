@@ -1,35 +1,53 @@
-
 const tax_rate = 0.10;
 const shipping_threshold = 1000;
-var subtotal = 0;
 
-/* Functions */
-function calculateTotal(q, p) { return q * p; }
-function calculateTax(s, r) { return s * r; }
-function calculateShipping(s, t) { return (s > t) ? 0 : 40; }
-function calculateGrandTotal(s, t, sh) { return s + t + sh; }
+function renderCart() {
+    let cartBody = document.getElementById("cartBody");
+    cartBody.innerHTML = "";
+    let subtotal = 0;
 
-function outputCurrency(num) {
-    document.write("RM" + num.toFixed(2));
+    for (let i = 0; i < filenames.length; i++) {
+        let total = quantities[i] * prices[i];
+        subtotal += total;
+
+        cartBody.innerHTML += `
+        <tr>
+            <td><img src="${filenames[i]}"></td>
+            <td>${titles[i]}</td>
+
+            <td class="center">
+                <button onclick="decreaseQty(${i})">−</button>
+                ${quantities[i]}
+                <button onclick="increaseQty(${i})">+</button>
+            </td>
+
+            <td class="right">RM ${prices[i].toFixed(2)}</td>
+            <td class="right">RM ${total.toFixed(2)}</td>
+        </tr>
+        `;
+    }
+
+    let tax = subtotal * tax_rate;
+    let shipping = subtotal > shipping_threshold ? 0 : 40;
+    let grand = subtotal + tax + shipping;
+
+    document.getElementById("subtotal").innerHTML = "RM " + subtotal.toFixed(2);
+    document.getElementById("tax").innerHTML = "RM " + tax.toFixed(2);
+    document.getElementById("shipping").innerHTML = "RM " + shipping.toFixed(2);
+    document.getElementById("grand").innerHTML = "RM " + grand.toFixed(2);
 }
 
-function outputCartRow(file, title, quantity, price, total) {
-    document.write('<tr>');
-    document.write('<td><img src="' + file + '" width="80" style="border:1px solid #ddd;"></td>');
-    document.write('<td>' + title + '</td>');
-    document.write('<td class="center">' + quantity + '</td>');
-    document.write('<td class="right">RM' + price.toFixed(2) + '</td>');
-    document.write('<td class="right">RM' + total.toFixed(2) + '</td>');
-    document.write('</tr>');
+/* Buttons */
+function increaseQty(index) {
+    quantities[index]++;
+    renderCart();
 }
 
-/* Loop data */
-for (var i = 0; i < filenames.length; i++) {
-    let total = calculateTotal(quantities[i], prices[i]);
-    subtotal += total;
-    outputCartRow(filenames[i], titles[i], quantities[i], prices[i], total);
+function decreaseQty(index) {
+    if (quantities[index] > 1) {
+        quantities[index]--;
+        renderCart();
+    }
 }
 
-var tax = calculateTax(subtotal, tax_rate);
-var shipping = calculateShipping(subtotal, shipping_threshold);
-var grand = calculateGrandTotal(subtotal, tax, shipping);
+window.onload = renderCart;
