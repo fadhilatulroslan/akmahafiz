@@ -21,26 +21,29 @@
             <th>Amount</th>
         </tr>
     </thead>
-    <tbody>
-        <script src="lab9.js"></script>
 
+    <tbody id="cartBody"></tbody>
+
+    <tbody>
         <tr class="totals">
             <td colspan="4">Subtotal</td>
-            <td><script>outputCurrency(subtotal);</script></td>
+            <td id="subtotal"></td>
         </tr>
         <tr class="totals">
             <td colspan="4">Tax</td>
-            <td><script>outputCurrency(tax);</script></td>
+            <td id="tax"></td>
         </tr>
         <tr class="totals">
             <td colspan="4">Shipping</td>
-            <td><script>outputCurrency(shipping);</script></td>
+            <td id="shipping"></td>
         </tr>
         <tr class="totals focus">
             <td colspan="4">Grand Total</td>
-            <td><script>outputCurrency(grand);</script></td>
+            <td id="grand"></td>
         </tr>
     </tbody>
 </table>
+
+<script src="lab9.js"></script>
 </body>
 </html>
