@@ -80,14 +80,13 @@ td:nth-child(2) {
   text-align: center;
 }
 
-/* ===== STYLE UNTUK ROW TOTALS - BUANG GARIS BAWAH ===== */
+/* Totals row styling */
 tr.totals td {
     background: #FFF3E0;
     text-align: right;
     border-bottom: none !important;
 }
 
-/* Baris terakhir (Grand Total) */
 .focus td {
   color: #E65100;  
   font-weight: 700;
@@ -95,7 +94,6 @@ tr.totals td {
   border-bottom: none !important;
 }
 
-/* Buang border pada semua row totals */
 tbody tr.totals {
   border-bottom: none;
 }
