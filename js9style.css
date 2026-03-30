@@ -89,3 +89,17 @@ tr.totals td {
   font-weight: 700;
   font-size: 18px;
 }
+
+button {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  background: #EF6C00;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #E65100;
+}
