@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.form-container {
+    background-color: #f0f0f0;
+    width: 600px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-header {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.art-form {
+    padding: 20px;
+    font-size: 14px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], 
+textarea, 
+select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.column { 
+    flex: 1; 
+}
+
+.column-side { 
+    flex: 1; 
+}
+
+/* Fieldsets */
+fieldset {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+.radio-label, .check-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+/* Logic Visual dari JavaScript */
+.highlight {
+    background-color: #fff9c4 !important;
+    border: 1px solid #fbc02d !important;
+}
+
+.field-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.error-icon {
+    display: none;
+    position: absolute;
+    right: 8px;
+    background-color: #e91e63;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Error styling untuk field individu */
+.error {
+    background-color: #ffcdd2 !important;
+    border: 2px solid #ef5350 !important;
+}
+
+/* Error styling untuk fieldset (Type dan Creative Commons) */
+fieldset.error {
+    border: 2px solid #ef5350 !important;
+    background-color: #ffcdd2 !important;
+}
+
+/* Show error icon bila field ada class error */
+.error + .error-icon {
+    display: block;
+}
+
+/* Error message styling */
+.error-message {
+    color: #ef5350;
+    font-size: 12px;
+    margin-top: 3px;
+    display: block;
+    min-height: 18px;
+}
+
+/* Mini input untuk Year */
+.mini input {
+    width: 80px;
+}
+
+/* Footer Actions */
+.form-actions {
+    background-color: #bdbdbd;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn {
+    background-color: #ff9800;
+    border: 1px solid #333;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.btn:hover {
+    background-color: #fb8c00;
+}

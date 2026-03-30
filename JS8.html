@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Art Work Details</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+            display:flex;
+            justify-content:center;
+            padding:20px;
+        }
+        
+        .form-container{
+            background:white;
+            width:600px;
+            border:1px solid #ccc;
+            padding:20px;
+        }
+        
+        h2{
+            background:#666;
+            color:white;
+            text-align:center;
+            padding:10px;
+            margin-bottom:20px;
+        }
+        
+        .form-group{
+            margin-bottom:15px;
+        }
+        
+        label{
+            display:block;
+            margin-bottom:5px;
+            font-weight:bold;
+        }
+        
+        input[type="text"],
+        textarea,
+        select{
+            width:100%;
+            padding:8px;
+            border:1px solid #ccc;
+        }
+        
+        textarea{
+            resize:vertical;
+        }
+        
+        fieldset{
+            border:1px solid #ccc;
+            padding:10px;
+            margin-bottom:15px;
+        }
+        
+        legend{
+            font-weight:bold;
+            padding:0 5px;
+        }
+        
+        .radio-label,
+        .check-label{
+            display:block;
+            margin:5px 0;
+            font-weight:normal;
+        }
+        
+        .row{
+            display:flex;
+            gap:20px;
+        }
+        
+        .col{
+            flex:1;
+        }
+        
+        .error{
+            color:red;
+            font-size:12px;
+            display:none;
+            margin-top:3px;
+        }
+        
+        .buttons{
+            margin-top:20px;
+            text-align:center;
+        }
+        
+        button{
+            padding:8px 20px;
+            margin:0 5px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Edit Art Work Details</h2>
+        
+        <form id="artForm" autocomplete="off">
+            <!-- Title -->
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="title" name="title" required>
+                <span class="error">Title is required</span>
+            </div>
+            
+            <!-- Description -->
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="description" rows="3" required></textarea>
+                <span class="error">Description is required</span>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <!-- Genre -->
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <select id="genre" required>
+                            <option value="">Choose genre ▼</option>
+                            <option value="abstract">Abstract</option>
+                            <option value="landscape">Landscape</option>
+                        </select>
+                        <span class="error">Please select a genre</span>
+                    </div>
+                    
+                    <!-- Subject -->
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select id="subject" required>
+                            <option value="">Choose subject ▼</option>
+                            <option value="nature">Nature</option>
+                            <option value="urban">Urban</option>
+                        </select>
+                        <span class="error">Please select a subject</span>
+                    </div>
+                    
+                    <!-- Medium -->
+                    <div class="form-group">
+                        <label>Medium</label>
+                        <input type="text" id="medium" required>
+                        <span class="error">Medium is required</span>
+                    </div>
+                    
+                    <!-- Year -->
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input type="text" id="year" pattern="[0-9]{4}" placeholder="2024" required>
+                        <span class="error">Please enter a valid year (4 digits)</span>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <!-- Type -->
+                    <fieldset>
+                        <legend>Type</legend>
+                        <div class="radio-label">
+                            <input type="radio" id="painting" name="type" value="painting" required>
+                            <label for="painting" style="display:inline">Painting</label>
+                        </div>
+                        <div class="radio-label">
+                            <input type="radio" id="sculpture" name="type" value="sculpture">
+                            <label for="sculpture" style="display:inline">Sculpture</label>
+                        </div>
+                        <span class="error" id="typeError">Please select a type</span>
+                    </fieldset>
+                    
+                    <!-- Creative Commons -->
+                    <fieldset>
+                        <legend>Image Creative Commons Specification</legend>
+                        <div class="check-label">
+                            <input type="checkbox" id="attribution">
+                            <label for="attribution" style="display:inline">Attribution</label>
+                        </div>
+                        <div class="check-label">
+                            <input type="checkbox" id="noncommercial">
+                            <label for="noncommercial" style="display:inline">Noncommercial</label>
+                        </div>
+                        <div class="check-label">
+                            <input type="checkbox" id="noderivative">
+                            <label for="noderivative" style="display:inline">No Derivative Works</label>
+                        </div>
+                        <div class="check-label">
+                            <input type="checkbox" id="sharealike">
+                            <label for="sharealike" style="display:inline">Share Alike</label>
+                        </div>
+                        <span class="error" id="specError">Please select at least one option</span>
+                    </fieldset>
+                </div>
+            </div>
+            
+            <!-- Museum -->
+            <div class="form-group">
+                <label>Museum</label>
+                <input type="text" id="museum" required>
+                <span class="error">Museum is required</span>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="buttons">
+                <button type="submit">Submit</button>
+                <button type="button" id="clearBtn">Clear Form</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // CARA SAMA SEPERTI CONTOH YANG BERJAYA
+        
+        // 1. Real-time validation untuk text inputs
+        document.querySelectorAll('input[required], textarea[required], select[required]').forEach(input => {
+            input.addEventListener('input', function() {
+                if (!this.checkValidity()) {
+                    this.nextElementSibling.style.display = 'block';
+                } else {
+                    this.nextElementSibling.style.display = 'none';
+                }
+            });
+        });
+        
+        // 2. Submit validation
+        document.getElementById('artForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Check semua required fields
+            document.querySelectorAll('input[required], textarea[required], select[required]').forEach(input => {
+                if (!input.checkValidity()) {
+                    input.nextElementSibling.style.display = 'block';
+                    isValid = false;
+                } else {
+                    input.nextElementSibling.style.display = 'none';
+                }
+            });
+            
+            // Check radio buttons (Type)
+            let painting = document.getElementById('painting').checked;
+            let sculpture = document.getElementById('sculpture').checked;
+            if (!painting && !sculpture) {
+                document.getElementById('typeError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('typeError').style.display = 'none';
+            }
+            
+            // Check checkboxes (Creative Commons)
+            let attribution = document.getElementById('attribution').checked;
+            let noncommercial = document.getElementById('noncommercial').checked;
+            let noderivative = document.getElementById('noderivative').checked;
+            let sharealike = document.getElementById('sharealike').checked;
+            
+            if (!attribution && !noncommercial && !noderivative && !sharealike) {
+                document.getElementById('specError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('specError').style.display = 'none';
+            }
+            
+            if (isValid) {
+                alert('SUCCESS! Form completed correctly.');
+            } else {
+                alert('Please fix the errors.');
+            }
+        });
+        
+        // 3. Clear button
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            // Reset semua input
+            document.getElementById('title').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('genre').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('medium').value = '';
+            document.getElementById('year').value = '';
+            document.getElementById('museum').value = '';
+            
+            // Uncheck radio
+            document.getElementById('painting').checked = false;
+            document.getElementById('sculpture').checked = false;
+            
+            // Uncheck checkboxes
+            document.getElementById('attribution').checked = false;
+            document.getElementById('noncommercial').checked = false;
+            document.getElementById('noderivative').checked = false;
+            document.getElementById('sharealike').checked = false;
+            
+            // Sembunyikan semua error
+            document.querySelectorAll('.error').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
