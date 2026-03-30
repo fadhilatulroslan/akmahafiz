@@ -23,12 +23,11 @@ header {
     margin-right: auto;
 }
 
-/* --- TOP HEADER ROW --- */
 .divtopHeaderRow {
     background-color: #222222;
     font-size: 0.9em;
     height: 3em;
-    text-align: center;
+    text-align: right;
     line-height: 3em;
     padding-right: 1em;
 }
