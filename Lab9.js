@@ -3,6 +3,8 @@ const shipping_threshold = 1000;
 
 function renderCart() {
     let cartBody = document.getElementById("cartBody");
+    if (!cartBody) return;
+    
     cartBody.innerHTML = "";
     let subtotal = 0;
 
@@ -12,15 +14,13 @@ function renderCart() {
 
         cartBody.innerHTML += `
         <tr>
-            <td><img src="${filenames[i]}"></td>
+            <td><img src="${filenames[i]}" alt="${titles[i]}"></td>
             <td>${titles[i]}</td>
-
             <td class="center">
                 <button onclick="decreaseQty(${i})">−</button>
                 ${quantities[i]}
                 <button onclick="increaseQty(${i})">+</button>
             </td>
-
             <td class="right">RM ${prices[i].toFixed(2)}</td>
             <td class="right">RM ${total.toFixed(2)}</td>
         </tr>
@@ -37,12 +37,13 @@ function renderCart() {
     document.getElementById("grand").innerHTML = "RM " + grand.toFixed(2);
 }
 
-/* Buttons */
+// Increase quantity
 function increaseQty(index) {
     quantities[index]++;
     renderCart();
 }
 
+// Decrease quantity
 function decreaseQty(index) {
     if (quantities[index] > 1) {
         quantities[index]--;
@@ -50,4 +51,5 @@ function decreaseQty(index) {
     }
 }
 
+// Load cart when page loads
 window.onload = renderCart;
