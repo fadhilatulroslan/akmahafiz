@@ -1,0 +1,114 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(214, 160, 173);
+    padding: 200px 300px 0 300px;
+    font-size: 1.4rem;
+}
+
+.utama {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 30px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+.beli {
+    background-color: rgb(228, 116, 183);
+    border-radius: 3px;
+    padding: 5px 20px;
+    transition: .2s;
+    outline: none;
+    border: none;
+    width: 100%;
+    color: white;
+    font-size: 1rem;
+}
+
+.beli i {
+    margin-right: 5px;
+}
+
+.beli:hover {
+    cursor: pointer;
+    background-color: rgb(209, 163, 187);
+}
+
+.buang {
+    background-color: rgb(229, 202, 218);
+    border-radius: 3px;
+    padding: 5px 20px;
+    transition: .2s;
+    outline: none;
+    border: none;
+    width: 100%;
+    color: #333;
+    font-size: 1rem;
+}
+
+.buang i {
+    margin-right: 5px;
+}
+
+.buang:hover {
+    cursor: pointer;
+    background-color: rgb(240, 192, 217);
+}
+
+.pertama {
+    background-color: rgba(230, 170, 200, 0.998);
+    padding: 30px;
+}
+
+.kedua {
+    background-color: rgb(233, 151, 151);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.kandungan-kedua {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.jumlah {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    padding-top: 15px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.tajuk {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 2px;
+}
