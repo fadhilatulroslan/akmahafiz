@@ -1,4 +1,3 @@
-/* --- CODE RESET & BASE --- */
 html, body, header, footer, nav, h1, h2, h3, ul, li, div, p, label {
     margin: 0; padding: 0; border: 0; font-size: 100%;
 }
@@ -10,7 +9,7 @@ body {
 header, .divmainNavigationRow, footer { width: 900px; margin: 0 auto; }
 
 /* --- HEADER & NAV --- */
-.divtopHeaderRow { background-color: #222; height: 30px; text-align: center; line-height: 30px; }
+.divtopHeaderRow { background-color: #222; height: 30px; text-align: right; line-height: 30px; }
 .divtopHeaderRow a { color: #999; margin-right: 20px; text-decoration: none; font-size: 12px; }
 h1 { font-size: 50px; font-weight: bold; padding: 10px 0; background-color: #fff; width: 900px; margin: 0 auto;}
 .divmainNavigationRow { background-color: #f8f8f8; border: 1px solid #e7e7e7; height: 40px; line-height: 40px; }
