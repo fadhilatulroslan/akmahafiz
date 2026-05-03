@@ -91,11 +91,13 @@ body::after {
 
 .boot-logo-wrap { display:flex; flex-direction:column; align-items:center; gap:16px; }
 
+/* ===== LOADER LOGO - DIUBAH KECIL ===== */
 .boot-logo {
     font-family:'Orbitron', sans-serif;
-    font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: 8px;
+    font-size: 1.2rem;      /* ← DIUBAH dari 3rem ke 1.2rem */
+    font-weight: 700;       /* ← DIUBAH dari 900 ke 700 */
+    letter-spacing: 4px;    /* ← DIUBAH dari 8px ke 4px */
+    white-space: nowrap;    /* ← PASTI SEBARIS */
     background: linear-gradient(135deg, var(--pink), #fff 50%, var(--green));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     opacity:0; transform:scale(0.85); filter:blur(8px);
@@ -106,7 +108,9 @@ body::after {
 
 .boot-logo-sub {
     font-family:'Fira Code', monospace;
-    font-size:0.7rem; letter-spacing:5px; text-transform:uppercase;
+    font-size:0.55rem;      /* ← DIUBAH dari 0.7rem ke 0.55rem */
+    letter-spacing:3px;     /* ← DIUBAH dari 5px ke 3px */
+    text-transform:uppercase;
     color:rgba(255,255,255,0.3);
     opacity:0; transform:translateY(10px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -379,7 +383,14 @@ h1 {
     pointer-events:none; z-index:50;
     background: linear-gradient(to top, rgba(7,7,9,0.8), transparent);
 }
-.glitch-foot-text { font-family:'Fira Code',monospace; font-size:0.58rem; letter-spacing:3px; color:rgba(255,255,255,0.18); text-transform:uppercase; }
+/* ===== FOOTER DIUBAH ===== */
+.glitch-foot-text { 
+    font-family:'Fira Code',monospace; 
+    font-size:0.58rem; letter-spacing:3px; 
+    color:rgba(255,255,255,0.18); 
+    text-transform:uppercase;
+    display: inline-block;
+}
 
 @media (max-width:768px) {
     h1 { font-size:2rem; }
