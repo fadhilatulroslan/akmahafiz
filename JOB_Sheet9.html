@@ -79,66 +79,42 @@
 </style>
 </head>
 <body>
-
-<div class="cart-container">
-    <h2 style="padding:15px;">SHOPPING CART</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>
-                    <div class="product">
-                        <img src="Girl with earing.jpeg">
-                        <span>Girl with a Pearl Earring</span>
-                    </div>
-                </td>
-                <td>3</td>
-                <td>$80.00</td>
-                <td>$240.00</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="product">
-                        <img src="Artist.jpeg">
-                        <span>Artist Holding a Thistle</span>
-                    </div>
-                </td>
-                <td>1</td>
-                <td>$125.00</td>
-                <td>$125.00</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="product">
-                        <img src="Eleanor and Toledo.jpeg">
-                        <span>Portrait of Eleanor of Toledo</span>
-                    </div>
-                </td>
-                <td>2</td>
-                <td>$75.00</td>
-                <td>$150.00</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="summary">
-        <p>Subtotal: $515.00</p>
-        <p>Tax: $51.50</p>
-        <p>Shipping: $40.00</p>
-        <p class="grand-total">Grand Total: $606.50</p>
-    </div>
+<div class="title">
+    <h1>Shopping Cart</h1>
 </div>
 
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th colspan="2">Product</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody id="cartBody"></tbody>
+
+    <tbody>
+        <tr class="totals">
+            <td colspan="4">Subtotal</td>
+            <td id="subtotal"></td>
+        </tr>
+        <tr class="totals">
+            <td colspan="4">Tax (10%)</td>
+            <td id="tax"></td>
+        </tr>
+        <tr class="totals">
+            <td colspan="4">Shipping</td>
+            <td id="shipping"></td>
+        </tr>
+        <tr class="totals focus">
+            <td colspan="4">Grand Total</td>
+            <td id="grand"></td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="scriptjs9.js"></script>
 </body>
 </html>
